@@ -12,7 +12,6 @@ func _ready():
 
 func generate_sectors():
 	var sector_resource = load("res://scenes/sector/sector.tscn")
-	print('generating sectors')
 	for sector_point in sector_centers:
 		var sector = sector_resource.instance()
 		sector.q = sector_point.q
@@ -28,9 +27,7 @@ func generate_sectors():
 			sector.red = red
 			sector.blue = blue
 			sector.green = green
-		print('Sector Name: ' + sector.name)
 		sector.name = String(sector.type) + String(sector.q) + String(sector.r)
-		print('Sector Name Changed to: ' + sector.name)
 		add_child(sector)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
