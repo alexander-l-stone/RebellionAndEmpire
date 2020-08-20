@@ -5,9 +5,9 @@ export var red = 0.0
 export var green = 0.0
 export var blue = 0.0
 
-export var x = 0
-export var y = 0
-export var z = 0
+export var q = 0
+export var r = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
