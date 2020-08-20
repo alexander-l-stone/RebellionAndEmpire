@@ -13,7 +13,9 @@ export var r = 0
 func _ready():
 	$Sprite_Hex.modulate = Color(red, green, blue)
 
+func _on_Hex_mouse_entered():
+	$Sprite_Hex.modulate = Color(min(0, red-0.1), min(0, green-0.1), min(0, blue-0.1))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func _on_Hex_mouse_exited():
+	$Sprite_Hex.modulate = Color(red, green, blue)

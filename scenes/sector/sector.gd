@@ -16,7 +16,6 @@ const hex_width = 64
 const hex_height = 64
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Make all the hexes
@@ -31,7 +30,7 @@ func generate_hexes():
 			if ((qloc-q)+(rloc-r) > -3) && ((qloc-q)+(rloc-r) < 3):
 				print('drawing hex')
 				var hex = hex_resource.instance()
-				hex.set_global_position(Vector2(hex_width*qloc+cos(deg2rad(60))*rloc*hex_height, hex_height*rloc*sin(deg2rad(60))))
+				hex.set_global_position(Vector2(hex_height*rloc*sin(deg2rad(60)),hex_width*qloc+cos(deg2rad(60))*rloc*hex_height))
 				print("Hex created at: " + String(hex.get_global_position()))
 				hex.red = red
 				hex.green = green
