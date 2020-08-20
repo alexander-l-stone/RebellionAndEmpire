@@ -28,10 +28,8 @@ func generate_hexes():
 		for rloc in range(-2+r, 3+r):
 			print(String(qloc-q) +","+ String(rloc-r))
 			if ((qloc-q)+(rloc-r) > -3) && ((qloc-q)+(rloc-r) < 3):
-				print('drawing hex')
 				var hex = hex_resource.instance()
 				hex.set_global_position(Vector2(hex_height*rloc*sin(deg2rad(60)),hex_width*qloc+cos(deg2rad(60))*rloc*hex_height))
-				print("Hex created at: " + String(hex.get_global_position()))
 				hex.red = red
 				hex.green = green
 				hex.blue = blue
