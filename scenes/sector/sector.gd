@@ -26,7 +26,7 @@ func generate_hexes():
 	var hex_resource = load("res://scenes/hex/hex.tscn")
 	for qloc in range(-2+q, 3+q):
 		for rloc in range(-2+r, 3+r):
-			print(String(qloc-q) +","+ String(rloc-r))
+
 			if ((qloc-q)+(rloc-r) > -3) && ((qloc-q)+(rloc-r) < 3):
 				var hex = hex_resource.instance()
 				hex.set_global_position(Vector2(hex_height*rloc*sin(deg2rad(60)),hex_width*qloc+cos(deg2rad(60))*rloc*hex_height))
