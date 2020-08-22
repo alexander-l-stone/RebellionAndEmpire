@@ -39,6 +39,8 @@ func lose_focus():
 		return
 
 func gain_focus():
+	if (focus):
+		return
 	self.red = self.red * 0.5
 	self.green = self.green * 0.5
 	self.blue = self.blue * 0.5
