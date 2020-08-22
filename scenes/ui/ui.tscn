@@ -18,12 +18,12 @@ script = ExtResource( 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -128.0
-margin_right = 193.0
+margin_right = 257.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UI_SelectedDetails_Panel" type="VBoxContainer" parent="UI_CanvasLayer/UI_Panel"]
+[node name="UI_SelectedSectorDetails_Panel" type="VBoxContainer" parent="UI_CanvasLayer/UI_Panel"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -128.0
@@ -34,13 +34,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UI_Coordinates_Label" type="Label" parent="UI_CanvasLayer/UI_Panel/UI_SelectedDetails_Panel"]
+[node name="UI_Coordinates_Label" type="Label" parent="UI_CanvasLayer/UI_Panel/UI_SelectedSectorDetails_Panel"]
 margin_right = 130.0
 margin_bottom = 14.0
 script = ExtResource( 2 )
 
-[node name="UI_SectorType_Label" type="Label" parent="UI_CanvasLayer/UI_Panel/UI_SelectedDetails_Panel"]
+[node name="UI_SectorType_Label" type="Label" parent="UI_CanvasLayer/UI_Panel/UI_SelectedSectorDetails_Panel"]
 margin_top = 18.0
 margin_right = 130.0
 margin_bottom = 32.0
 script = ExtResource( 4 )
+
+[node name="UI_SelectedPlanetDetails_Panel" type="VBoxContainer" parent="UI_CanvasLayer/UI_Panel"]
+anchor_left = 0.498
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 0.0139923
+margin_top = -128.0
+margin_right = 128.5
+__meta__ = {
+"_edit_use_anchors_": false
+}

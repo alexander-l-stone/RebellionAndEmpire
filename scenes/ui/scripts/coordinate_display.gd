@@ -13,11 +13,10 @@ func _ready():
 
 func clear():
 	self.text = ""
-	print('Recieved clear_coordinates')
 
 func display(q, r):
 	self.text = "X: " + String(r) + ", Y: " + String(-q)
-	print('Recieved hover_hex')
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
