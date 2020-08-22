@@ -14,8 +14,11 @@ func _ready():
 	$Sprite_Hex.modulate = Color(red, green, blue)
 
 func _on_Hex_mouse_entered():
-	$Sprite_Hex.modulate = Color(min(0, red-0.1), min(0, green-0.1), min(0, blue-0.1))
-
+	$Sprite_Hex.modulate = Color(max(0, red-0.25), max(0, green-0.25), max(0, blue-0.25))
+	SignalManager.emit_signal('hover_coordinates', q, r)
+	print('Emitting Signal hover_coordinates')
 
 func _on_Hex_mouse_exited():
 	$Sprite_Hex.modulate = Color(red, green, blue)
+	SignalManager.emit_signal('clear_coordinates')
+	print('Emitting Signal clear_coordinates')
