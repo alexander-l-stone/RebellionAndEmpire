@@ -17,7 +17,7 @@ func generate_sectors():
 		sector.q = sector_point.q
 		sector.r = sector_point.r
 		if(sector_point.q == 0):
-			sector.type = 'core'
+			sector.sector_type = 'core'
 			sector.red = 1
 		else:
 			rng.randomize()
@@ -27,7 +27,7 @@ func generate_sectors():
 			sector.red = red
 			sector.blue = blue
 			sector.green = green
-		sector.name = String(sector.type) + String(sector.q) + String(sector.r)
+		sector.name = String(sector.sector_type) + String(sector.q) + String(sector.r)
 		add_child(sector)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -24,7 +24,7 @@ SignalManager="*res://scripts/signal_manager.gd"
 
 [display]
 
-window/size/width=800
+window/size/height=768
 
 [rendering]
 

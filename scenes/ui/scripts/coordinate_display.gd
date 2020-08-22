@@ -1,4 +1,4 @@
-extends RichTextLabel
+extends Label
 
 
 # Declare member variables here. Examples:
@@ -8,15 +8,15 @@ extends RichTextLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	SignalManager.connect('hover_hex', self, 'display')
+	SignalManager.connect('clear_coordinates', self, 'clear')
 
 func clear():
-	self.text = "X: , Y: "
-	print('Recieved clear_coordinates')
+	self.text = ""
 
 func display(q, r):
 	self.text = "X: " + String(r) + ", Y: " + String(-q)
-	print('Recieved hover_coordinates')
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
