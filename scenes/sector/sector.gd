@@ -7,7 +7,7 @@ extends Node
 
 export var q = 0
 export var r = 0
-export var type = 'normal'
+export var sector_type = 'normal'
 export var red = 0.0
 export var green = 0.0
 export var blue = 0.0
@@ -35,6 +35,7 @@ func generate_hexes():
 				hex.blue = blue
 				hex.r = rloc
 				hex.q = qloc
+				hex.sector_type = self.sector_type
 				add_child(hex)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
