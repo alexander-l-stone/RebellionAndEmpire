@@ -14,8 +14,29 @@
             "barren_planet",
             "asteroid_field"
         ],
-        "optional_min_num" : 0,
+        "optional_min_range" : 0,
         "optional_max_range": 3
+    },
+    "core": {
+        "planets": [
+            "habitable_planet",
+            "habitable_planet",
+            "habitable_planet",
+            "habitable_planet",
+            "habitable_planet",
+            "habitable_planet",
+            "asteroid_field",
+            "asteroid_field",
+            "asteroid_field",
+            "asteroid_field"
+        ],
+        "optional_planets": [
+            "barren_planet",
+            "asteroid_field",
+            "habitable_planet"
+        ],
+        "optional_min_range" : 0,
+        "optional_max_range": 0
     },
     "industrial": {
         "planets": [
@@ -35,7 +56,7 @@
             "asteroid_field",
             "habitable_planet"
         ],
-        "optional_min_num" : 0,
+        "optional_min_range" : 0,
         "optional_max_range": 2
     }
 }
