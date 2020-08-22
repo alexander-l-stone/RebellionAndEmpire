@@ -1,0 +1,26 @@
+extends Sprite
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+var q = 0
+var r = 0
+
+var type = "barren_planet"
+
+var fleets = {}
+var builds = []
+var garrison = {}
+var special_units = {}
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func reposition():
+	self.set_global_position(Vector2(Constants.hex_height*self.r*sin(deg2rad(60)),Constants.hex_width*self.q+cos(deg2rad(60))*self.r*Constants.hex_height))
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass

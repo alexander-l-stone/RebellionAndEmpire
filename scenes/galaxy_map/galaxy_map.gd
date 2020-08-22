@@ -28,6 +28,7 @@ func generate_sectors():
 			sector.blue = blue
 			sector.green = green
 		sector.name = String(sector.sector_type) + String(sector.q) + String(sector.r)
+		sector.generate_hexes()
 		add_child(sector)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
