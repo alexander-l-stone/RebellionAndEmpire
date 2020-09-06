@@ -10,13 +10,14 @@ var r = 0
 var type = "barren_planet"
 
 var fleets = {}
-var builds = []
+var buildings = []
 var garrison = {}
 var special_units = {}
+var building_slots = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	reposition()
 
 func reposition():
 	self.set_global_position(Vector2(Constants.hex_height*self.r*sin(deg2rad(60)),Constants.hex_width*self.q+cos(deg2rad(60))*self.r*Constants.hex_height))

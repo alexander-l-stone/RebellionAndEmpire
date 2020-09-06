@@ -34,14 +34,33 @@ func generate_hexes():
 				hex.q = qloc
 				hex.sector_type = self.sector_type
 				add_child(hex)
-				#TODO: Remove this if when more sector types are implemented
+	#TODO: Remove this if when more sector types are implemented
 	if(self.sector_type == "core"):
-		generate_planets()
+		generate_planets(coordinate_array)
 
-func generate_planets():
+#coordinate_array is an array of dicts. Those dicts are of form {'q':int, 'r':int}
+func generate_planets(coordinate_array):
+	var sector_guide = {}
+	var rng = RandomNumberGenerator.new()
+
+	var planet_resource = load("res://scenes/planet/planet.tscn")
 	if(self.sector_type == "core"):
-		var sector_guide = DataStore.sector_types.core
-		print(sector_guide)
+		sector_guide = DataStore.sector_types.core
+		#TODO: make a generic sector for failcase
+		for planet_type in sector_guide.planets:
+			#pick random coordiante from array
+			var random_coord_index = rng.randf_range(0, coordinate_array.size())
+			var planet = planet_resource.instance()
+			print(DataStore.planet_types)
+			var planet_data = DataStore.planet_types[planet_type]
+			var sprite_path = "res://resources/" + planet_type + ".png"
+			var sprite_resource = load(sprite_path)
+			planet.texture = sprite_resource
+			planet.q = coordinate_array[random_coord_index]["q"]
+			planet.r = coordinate_array[random_coord_index]["r"]
+			coordinate_array.remove(random_coord_index)
+			planet.building_slots = planet_data["building_slots"]
+			add_child(planet)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
