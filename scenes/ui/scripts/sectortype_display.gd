@@ -8,7 +8,7 @@ extends Label
 func _ready():
 	SignalManager.connect('lclick_hex', self, 'display')
 	SignalManager.connect('rclick_hex', self, 'clear')
-	pass
+
 
 # Called when the node enters the scene tree for the first time.
 func clear(_q, _r):

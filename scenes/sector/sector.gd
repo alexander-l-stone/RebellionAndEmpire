@@ -42,7 +42,6 @@ func generate_hexes():
 func generate_planets(coordinate_array):
 	var sector_guide = {}
 	var rng = RandomNumberGenerator.new()
-
 	var planet_resource = load("res://scenes/planet/planet.tscn")
 	if(self.sector_type == "core"):
 		sector_guide = DataStore.sector_types.core
@@ -51,7 +50,6 @@ func generate_planets(coordinate_array):
 			#pick random coordiante from array
 			var random_coord_index = rng.randf_range(0, coordinate_array.size())
 			var planet = planet_resource.instance()
-			print(DataStore.planet_types)
 			var planet_data = DataStore.planet_types[planet_type]
 			var sprite_path = "res://resources/" + planet_type + ".png"
 			var sprite_resource = load(sprite_path)
