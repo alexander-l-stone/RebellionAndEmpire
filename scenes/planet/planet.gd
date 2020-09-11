@@ -14,6 +14,7 @@ var buildings = []
 var garrison = {}
 var special_units = {}
 var building_slots = 2
+var special = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

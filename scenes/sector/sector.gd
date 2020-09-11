@@ -45,20 +45,18 @@ func generate_planets(coordinate_array):
 	var planet_resource = load("res://scenes/planet/planet.tscn")
 	if(self.sector_type == "core"):
 		sector_guide = DataStore.sector_types.core
-		#TODO: make a generic sector for failcase
-		for planet_type in sector_guide.planets:
-			#pick random coordiante from array
-			var random_coord_index = rng.randf_range(0, coordinate_array.size())
-			var planet = planet_resource.instance()
-			var planet_data = DataStore.planet_types[planet_type]
-			var sprite_path = "res://resources/" + planet_type + ".png"
-			var sprite_resource = load(sprite_path)
-			planet.texture = sprite_resource
-			planet.q = coordinate_array[random_coord_index]["q"]
-			planet.r = coordinate_array[random_coord_index]["r"]
-			coordinate_array.remove(random_coord_index)
-			planet.building_slots = planet_data["building_slots"]
-			add_child(planet)
+	for planet_type in sector_guide.planets:
+		#pick random coordiante from array
+		var random_coord_index = rng.randf_range(0, coordinate_array.size())
+		var planet = planet_resource.instance()
+		var planet_data = DataStore.planet_types[planet_type]
+		planet.texture = load("res://resources/" + planet_type + ".png")
+		planet.q = coordinate_array[random_coord_index]["q"]
+		planet.r = coordinate_array[random_coord_index]["r"]
+		coordinate_array.remove(random_coord_index)
+		planet.building_slots = planet_data["building_slots"]
+		planet.special = planet_data['special']
+		add_child(planet)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
