@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/galaxy_map/galaxy_map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ui/ui.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/test/test.gd" type="Script" id=3]
 
 [node name="Test" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="galaxy_map" parent="." instance=ExtResource( 1 )]
 
