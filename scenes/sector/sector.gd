@@ -26,7 +26,7 @@ func generate_hexes():
 			if ((qloc-q)+(rloc-r) > -3) && ((qloc-q)+(rloc-r) < 3):
 				coordinate_array.append({'q': qloc, 'r': rloc})
 				var hex = hex_resource.instance()
-				hex.set_global_position(Vector2(Constants.hex_height*rloc*sin(deg2rad(60)),Constants.hex_width*qloc+cos(deg2rad(60))*rloc*Constants.hex_height))
+				Constants.set_coordinates(qloc, rloc, hex)
 				hex.red = red
 				hex.green = green
 				hex.blue = blue
