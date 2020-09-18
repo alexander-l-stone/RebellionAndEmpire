@@ -9,7 +9,6 @@ var r = 0
 
 var type = "barren_planet"
 
-var fleets = {}
 var buildings = []
 var garrison = {}
 var special_units = {}

@@ -28,6 +28,9 @@ var planet_types = {
 		},
 }
 
+var planets = {}
+var fleets = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var sectors_json = DataLoader.load_data("/core/sectors.json")
