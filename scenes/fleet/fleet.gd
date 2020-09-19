@@ -9,6 +9,7 @@ var r = 0
 
 var contents = {}
 var controller = "Rebellion"
+var focused = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +23,21 @@ func add_ship(ship):
 		contents[ship.ship_type].append(ship)
 	else: 
 		contents[ship.ship_type] = [ship]
+
+func toggle_focus():
+	if(focused):
+		focused = false
+		$Sprite_FleetHighlight.visible = false
+		DataStore.focused_fleet = null
+	else:
+		focused = true
+		$Sprite_FleetHighlight.visible = true
+		DataStore.focused_fleet = self
+
+func remove_focus():
+	focused = false
+	$Sprite_FleetHighlight.visible = false
+	DataStore.focused_fleet = null
 
 #TODO: Add a remove_ship and get_ship function
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/fleet/fleet.gd" type="Script" id=1]
 [ext_resource path="res://resources/ship.png" type="Texture" id=2]
+[ext_resource path="res://resources/ship_highlight.png" type="Texture" id=3]
 
 [node name="Fleet" type="Area2D"]
 script = ExtResource( 1 )
@@ -11,3 +12,9 @@ texture = ExtResource( 2 )
 
 [node name="Collision_Fleet" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -32.6722, -0.311245, -16.3829, -27.3276, 15.2685, -27.3276, 30.6307, -0.708542, 15.4009, 26.3078, -16.1181, 26.4402 )
+
+[node name="Sprite_FleetHighlight" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0, 0.109804, 1, 1 )
+scale = Vector2( 1.25, 1.25 )
+texture = ExtResource( 3 )

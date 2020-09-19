@@ -26,7 +26,10 @@ func handle_lclick(q, r, _sector_type):
 		self.lose_focus()
 
 func handle_rclick(_q, _r):
-	self.lose_focus()
+	if(DataStore.focused_fleet == null):
+		self.lose_focus()
+	else:
+		self.move_focused_fleet()
 
 func lose_focus():
 	if(focus):
@@ -35,6 +38,8 @@ func lose_focus():
 		self.blue = self.blue * 2
 		$Sprite_Hex.modulate = Color(self.red, self.green, self.blue, self.alpha)
 		focus = false
+		if(DataStore.fleets.has(str(q) + str(r))):
+			DataStore.fleets[str(q) + str(r)].remove_focus()
 	else:
 		return
 
@@ -46,6 +51,11 @@ func gain_focus():
 	self.blue = self.blue * 0.5
 	$Sprite_Hex.modulate = Color(self.red, self.green, self.blue, self.alpha)
 	focus = true
+	if(DataStore.fleets.has(str(q) + str(r))):
+		DataStore.fleets[str(q) + str(r)].toggle_focus()
+
+func move_focused_fleet():
+	pass
 
 func _on_Hex_mouse_entered():
 	self.alpha = 0.50

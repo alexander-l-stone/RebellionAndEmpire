@@ -22,10 +22,7 @@ func display(q, r, _sectortype):
 		var i = 0
 		for entry in contents:
 			i+=1
-			print(i)
-			print(entry)
 			var display_string = str(entry[entry.keys()[0]]) + "x " + entry.keys()[0].capitalize()
-			print(display_string)
 			var new_listing = Label.new()
 			new_listing.text = display_string
 			$UI_FleetContent_VerticalScroll.add_child(new_listing)

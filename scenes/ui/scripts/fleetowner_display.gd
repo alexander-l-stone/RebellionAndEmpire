@@ -11,7 +11,7 @@ func _ready():
 	SignalManager.connect('lclick_hex', self, 'display')
 	SignalManager.connect('rclick_hex', self, 'clear')
 
-func clear(_q, _r):
+func clear(q, r):
 	self.text = ""
 	
 func display(q, r, _sectortype):

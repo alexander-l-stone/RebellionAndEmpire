@@ -33,6 +33,7 @@ var planet_types = {
 
 var planets = {}
 var fleets = {}
+var focused_fleet = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
