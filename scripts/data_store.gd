@@ -8,6 +8,7 @@ extends Node
 var sector_types = {}
 var planet_types = {
 	"asteroid_field": {
+		"name": "Asteroid Field",
 		"sprite_name": "asteroid_field",
 		"building_slots": 1,
 		"special": {
@@ -16,12 +17,14 @@ var planet_types = {
 	},
 	"barren_planet":
 		{
+			"name": "Barren Planet",
 			"sprite_name": "habitable_planet",
 			"building_slots": 2,
 			"special": {},
 		},
 	"habitable_planet": 
 		{
+			"name": "Habitable Planet",
 			"sprite_name": "habitable_planet",
 			"building_slots": 4,
 			"special": {},

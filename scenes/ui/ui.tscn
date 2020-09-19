@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/ui/scripts/camera_movement.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/scripts/coordinate_display.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/scripts/ui.gd" type="Script" id=3]
 [ext_resource path="res://scenes/ui/scripts/sectortype_display.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ui/scripts/planettype_display.gd" type="Script" id=5]
 
 [node name="UI" type="Node2D"]
 script = ExtResource( 3 )
@@ -22,7 +23,7 @@ script = ExtResource( 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -128.0
-margin_right = 257.0
+margin_right = 1025.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -50,13 +51,18 @@ margin_bottom = 32.0
 script = ExtResource( 4 )
 
 [node name="UI_SelectedPlanetDetails_Panel" type="VBoxContainer" parent="UI_CanvasLayer/UI_Panel"]
-anchor_left = 0.498
+anchor_left = 0.125
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 0.125
 anchor_bottom = 1.0
-margin_left = 0.0139923
+margin_left = -0.125
 margin_top = -128.0
-margin_right = 128.5
+margin_right = 126.875
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="UI_PlanetType" type="Label" parent="UI_CanvasLayer/UI_Panel/UI_SelectedPlanetDetails_Panel"]
+margin_right = 127.0
+margin_bottom = 14.0
+script = ExtResource( 5 )

@@ -54,6 +54,8 @@ func generate_planets(coordinate_array):
 		planet.q = coordinate_array[random_coord_index]["q"]
 		planet.r = coordinate_array[random_coord_index]["r"]
 		coordinate_array.remove(random_coord_index)
+		planet.type = planet_type
+		planet.planet_name = planet_data["name"]
 		planet.building_slots = planet_data["building_slots"]
 		planet.special = planet_data['special']
 		DataStore.planets["" + str(planet.q) + str(planet.r)] = planet
