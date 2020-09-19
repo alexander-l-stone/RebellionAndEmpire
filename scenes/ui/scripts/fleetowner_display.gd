@@ -15,11 +15,10 @@ func clear(_q, _r):
 	self.text = ""
 	
 func display(q, r, _sectortype):
-	if(DataStore.planets.has(str(q) + str(r))):
-		self.text = DataStore.planets[str(q) + str(r)].planet_name
+	if(DataStore.fleets.has(str(q) + str(r))):
+		self.text = DataStore.fleets[str(q) + str(r)].controller
 	else:
 		self.text = ""
-
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
