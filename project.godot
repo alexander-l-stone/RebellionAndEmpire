@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "MoveOrder",
+"language": "GDScript",
+"path": "res://scenes/move_order/move_order.gd"
+} ]
 _global_script_class_icons={
-
+"MoveOrder": ""
 }
 
 [application]
@@ -23,8 +28,9 @@ config/icon="res://icon.png"
 
 SignalManager="*res://scripts/signal_manager.gd"
 DataLoader="*res://scripts/data_loader.gd"
-DataStore="*res://scripts/data_store.gd"
 Constants="*res://scripts/constants.gd"
+DataStore="*res://scripts/data_store.gd"
+ProcessOrders="*res://scripts/process_orders.gd"
 
 [display]
 

@@ -6,6 +6,8 @@ var target
 var issuing_fleet
 var next_order
 
+class_name MoveOrder
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Constants.set_coordinates(target['q'], target['r'], $MoveOrder_Sprite)

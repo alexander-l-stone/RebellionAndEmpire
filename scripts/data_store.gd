@@ -34,6 +34,7 @@ var planet_types = {
 var planets = {}
 var fleets = {}
 var focused_fleet = null
+var order_queue = OrderQueue.new()
 
 
 
@@ -43,7 +44,13 @@ func _ready():
 	self.sector_types = sectors_json.result
 
 class OrderQueue:
+	var queue = []
 	
+	func enqueue(order):
+		self.queue.append(order)
+	
+	func dequeue():
+		return queue.pop_front()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
