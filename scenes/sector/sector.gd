@@ -25,6 +25,7 @@ func generate_hexes():
 		for rloc in range(-2+r, 3+r):
 			if ((qloc-q)+(rloc-r) > -3) && ((qloc-q)+(rloc-r) < 3):
 				coordinate_array.append({'q': qloc, 'r': rloc})
+				DataStore.coordinates[str(qloc)+str(rloc)] = true
 				var hex = hex_resource.instance()
 				Constants.set_coordinates(qloc, rloc, hex)
 				hex.red = red

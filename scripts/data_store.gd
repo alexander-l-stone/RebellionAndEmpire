@@ -35,6 +35,7 @@ var planets = {}
 var fleets = {}
 var focused_fleet = null
 var order_queue = []
+var coordinates = {}
 
 
 

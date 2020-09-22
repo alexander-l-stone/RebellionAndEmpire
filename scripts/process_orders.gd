@@ -10,6 +10,9 @@ extends Node
 func _ready():
 	pass # Replace with function body.
 
+func add_order(order):
+	DataStore.order_queue.enqueue(order)
+
 func process_turn():
 	var new_queue = DataStore.OrderQueue.new()
 	var current_order = DataStore.order_queue.dequeue()
