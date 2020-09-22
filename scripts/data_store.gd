@@ -35,12 +35,15 @@ var planets = {}
 var fleets = {}
 var focused_fleet = null
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var sectors_json = DataLoader.load_data("/core/sectors.json")
 	self.sector_types = sectors_json.result
 
-
+class OrderQueue:
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
