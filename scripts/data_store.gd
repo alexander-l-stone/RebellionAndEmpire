@@ -34,7 +34,7 @@ var planet_types = {
 var planets = {}
 var fleets = {}
 var focused_fleet = null
-var order_queue = OrderQueue.new()
+var order_queue = []
 
 
 
@@ -42,6 +42,7 @@ var order_queue = OrderQueue.new()
 func _ready():
 	var sectors_json = DataLoader.load_data("/core/sectors.json")
 	self.sector_types = sectors_json.result
+	order_queue = OrderQueue.new()
 
 class OrderQueue:
 	var queue = []
