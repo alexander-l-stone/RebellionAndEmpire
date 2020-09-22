@@ -4,7 +4,7 @@ extends Node2D
 #target are dicts of the form {'q': int, 'r': int}
 var target
 var issuing_fleet
-var next_order
+var nodes_to_visit: Array
 
 class_name MoveOrder
 
@@ -14,7 +14,10 @@ func _ready():
 
 func process_order():
 	#if next_order != null do the todo below
-	#TODO: Check if the next_target has an enemy in it. If so, recalculate
-	issuing_fleet.q = target['q']
-	issuing_fleet.r = target['r']
-	return next_order
+	for node in self.nodes_to_vist:
+		issuing_fleet.q = node['q']
+		issuing_fleet.r = node['r']
+		#TODO: Break if there is an enemy here
+	if(issuing_fleet.q == target['q'] and issuing_fleet.r == target['r']):
+		return true
+	return false

@@ -17,14 +17,10 @@ func process_turn():
 	while (current_order != null):
 		#TODO: handle all kinds of orders
 		if (current_order.get_class() == "MoveOrder"):
-			var order_result = current_order.process_order()
-			if(order_result.get_class() == "MoveOrder"):
-				DataStore.order_queue.enqueue(order_result)
-			elif(order_result.get_class() == "Dictionary"):
-				var new_move_order = move_order_resource.instance()
-				new_move_order.target = order_result
-				new_move_order.issuing_fleet = current_order.issuing_fleet
-				#TODO: Pathfind the next orders
+			var order_completed = current_order.process_order()
+			if(not order_completed):
+				#TODO: A* the new path
+				pass
 	#TODO: Handle combat?
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
