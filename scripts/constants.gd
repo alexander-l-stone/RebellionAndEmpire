@@ -64,29 +64,16 @@ func a_star(start, target):
 		
 		for next in get_adjacent_coordinates(current.data['q'], current.data['r']):
 			#TODO: Calculate actual cost later
-			print('current:')
-			print(current.data)
-			print('next:')
-			print(next)
 			var new_cost = cost_so_far[convert_coordinates_to_string(current.data.q, current.data.r)] + 1
-			if (!cost_so_far.has(next)) or (new_cost < cost_so_far[next]):
+			if (not cost_so_far.has(convert_coordinates_to_string(next.q, next.r))) or (new_cost < cost_so_far[convert_coordinates_to_string(next.q, next.r)]):
 				if(current != null and came_from[convert_coordinates_to_string(current.data.q, current.data.r)] != convert_coordinates_to_string(next.q, next.r)):
 					cost_so_far[convert_coordinates_to_string(next.q, next.r)] = new_cost
 					came_from[convert_coordinates_to_string(next.q, next.r)] = convert_coordinates_to_string(current.data.q, current.data.r)
-					print('came_from:')
-					print(came_from)
-					print('cost_so_far:')
-					print(cost_so_far)
 					frontier.enqueue(next)
 	var path_array = [convert_coordinates_to_string(target.q, target.r)]
 	var start_coord = convert_coordinates_to_string(start.q, start.r)
-	var i := 0
 	while (path_array[0] != start_coord):
-		print(path_array)
 		path_array.push_front(came_from[path_array[0]])
-		i += 1
-		if i > 100:
-			break
 	for entry in path_array:
 		entry = convert_string_to_coordinates(entry)
 	return path_array
