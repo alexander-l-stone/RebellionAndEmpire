@@ -60,6 +60,7 @@ func gain_focus():
 func move_focused_fleet():
 	var fleet_loc = {'q': DataStore.focused_fleet['q'], 'r': DataStore.focused_fleet['r']}
 	var move_path = Constants.a_star(fleet_loc, {'q': self.q, 'r': self.r})
+	print("Move Path: ")
 	print(move_path)
 
 func _on_Hex_mouse_entered():

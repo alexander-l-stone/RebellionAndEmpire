@@ -66,17 +66,19 @@ func a_star(start, target):
 			#TODO: Calculate actual cost later
 			var new_cost = cost_so_far[convert_coordinates_to_string(current.data.q, current.data.r)] + 1
 			if (!cost_so_far.has(next)) or (new_cost < cost_so_far[next]):
-				cost_so_far[convert_coordinates_to_string(next.q, next.r)] = new_cost
-				frontier.enqueue(next)
-				came_from[convert_coordinates_to_string(next.q, next.r)] = convert_coordinates_to_string(current.data.q, current.data.r)
+				if(current != null and came_from[convert_coordinates_to_string(current.data.q, current.data.r)] != convert_coordinates_to_string(next.q, next.r)):
+					cost_so_far[convert_coordinates_to_string(next.q, next.r)] = new_cost
+					came_from[convert_coordinates_to_string(next.q, next.r)] = convert_coordinates_to_string(current.data.q, current.data.r)
+					print(came_from)
+					frontier.enqueue(next)
 	var path_array = [convert_coordinates_to_string(target.q, target.r)]
-	print(convert_coordinates_to_string(start.q, start.r))
+	var start_coord = convert_coordinates_to_string(start.q, start.r)
 	var i := 0
-	while (path_array[path_array.size()-1] != convert_coordinates_to_string(start.q, start.r)):
+	while (path_array[0] != start_coord):
 		print(path_array)
-		path_array.append(came_from[path_array[path_array.size()-1]])
+		path_array.push_front(came_from[path_array[0]])
 		i += 1
-		if (i == 10):
+		if i > 100:
 			break
 	for entry in path_array:
 		entry = convert_string_to_coordinates(entry)
@@ -89,14 +91,13 @@ func a_star(start, target):
 class PQNode:
 		var data: Dictionary
 		var priority: int
-		var next
 		
 		func _init(data, target):
 			self.data = data
 			self.priority = Constants.heuristic(self.data, target)
 
 class PriorityQueue:
-	var head = null
+	var heap = []
 	var target: Dictionary
 	var distance: int
 	
@@ -104,29 +105,49 @@ class PriorityQueue:
 		self.target = target
 		
 	func empty():
-		return (self.head == null)
+		return (self.heap.size() == 0)
+	
+	func left_pos(i):
+		return 2*i
+	
+	func right_pos(i):
+		return 2*i+1
+	
+	func parent_pos(i):
+		return int(i/2)
+	
+	func is_leaf(i): 
+		if i >= (int(self.heap.size()/2)) and i <= self.heap.size(): 
+			return true
+		return false
+	
+	func swap_pos(fpos, spos):
+		var temp = self.heap[spos]
+		self.heap[spos] = self.heap[fpos]
+		self.heap[fpos] = temp
+	
+	func minify_heap(i):
+		if not self.is_leaf(i):
+			if(self.heap[i].priority) > self.heap[self.left_pos(i)].priority:
+				self.swap_pos(i, self.left_pos(i))
+				self.minify_heap(self.left_pos(i))
+			elif(self.heap[i].priority) > self.heap[self.right_pos(i)].priority:
+				self.swap_pos(i, self.right_pos(i))
+				self.minify_heap(self.right_pos(i))
 	
 	func enqueue(data):
 		var new_node = PQNode.new(data, self.target)
-		if(self.head == null or typeof(self.head) == 18):
-			self.head = new_node
-		else:
-			var curr_node = self.head
-			while(new_node.priority >= curr_node.priority):
-				if(curr_node.next == null):
-					curr_node.next = new_node
-					return
-				else:
-					curr_node = curr_node.next
-			new_node.next = curr_node.next
-			curr_node.next = new_node
+		self.heap.append(new_node)
+		var current = self.heap.size() - 1
+		while (self.heap[current].priority < self.heap[self.parent_pos(current)].priority):
+			self.swap_pos(current, self.parent_pos(current))
+			current = self.parent_pos(current)
 	
 	func dequeue():
-		if(self.head != null):
-			var return_node = self.head
-			self.head = self.head.next
-			return return_node
-		else:
-			return null
+		var front_element = self.heap[0]
+		self.heap[0] = self.heap[self.heap.size() - 1]
+		self.heap.pop_back()
+		self.minify_heap(0)
+		return front_element
 	
 	
