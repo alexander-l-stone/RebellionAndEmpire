@@ -19,32 +19,62 @@ func get_adjacent_coordinates(q, r):
 					coord_array.append({'q': qloc, 'r': rloc})
 	return coord_array
 
+func convert_coordinates_to_string(q, r):
+	return str(q)+str(r)
+
+#Note the largest coordinate that should be see in a 7
+func convert_string_to_coordinates(string):
+	var return_dict = {}
+	if(string.length == 2):
+		return_dict['q'] = int(string.substr(0,1))
+		return_dict['r'] = int(string.substr(1,1))
+	elif(string.length == 3):
+		if(string.substr(0,1) == '-'):
+			return_dict['q'] = int(string.substr(0,2))
+			return_dict['r'] = int(string.substr(2,1))
+		else:
+			return_dict['q'] = int(string.substr(0,1))
+			return_dict['r'] = int(string.substr(1,2))
+	else:
+		return_dict['q'] = int(string.substr(0,2))
+		return_dict['r'] = int(string.substr(2,2))
+	return return_dict
+
 func heuristic(coord1, coord2):
 	#TODO: Make this better
 	return (abs(coord1['q']-coord2['q'])+abs(coord1['r']-coord2['r']))
 
 func a_star(start, target):
-	var frontier = Constants.PriorityQueue(target)
+	var frontier = PriorityQueue.new(target)
 	frontier.enqueue(start)
 	var came_from = {}
 	var cost_so_far = {}
 	came_from[start] = null
 	cost_so_far[start] = 0
-	
 	while not frontier.empty():
 		var current = frontier.dequeue()
 	
-		if current == target:
+		if current.data == target:
 			break
 		
-		for next in get_adjacent_coordinates(current['q'], current['r']):
+		for next in get_adjacent_coordinates(current.data['q'], current.data['r']):
 			#TODO: Calculate actual cost later
-			var new_cost = cost_so_far[current] + 1
-			if (cost_so_far.has(next)) or (new_cost < cost_so_far[next]):
+			var new_cost = cost_so_far[current.data] + 1
+			print('Current:')
+			print(current.data)
+			print('Next:')
+			print(next)
+			print('New Cost: ' + str(new_cost))
+			if(!cost_so_far.has(next)):
+				print('New hex')
+			elif(new_cost < cost_so_far[next]):
+				print('Cheaper Path Found Than: ' + str(cost_so_far[next]))
+			print(came_from)
+			print(cost_so_far)
+			if (!cost_so_far.has(next)) or (new_cost < cost_so_far[next]):
 				cost_so_far[next] = new_cost
 				frontier.enqueue(next)
-				came_from[next] = current
-				
+				came_from[next] = current.data
 	return came_from
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,7 +84,7 @@ func a_star(start, target):
 class PQNode:
 		var data: Dictionary
 		var priority: int
-		var next: Dictionary
+		var next
 		
 		func _init(data, target):
 			self.data = data
@@ -67,10 +97,13 @@ class PriorityQueue:
 	
 	func _init(target):
 		self.target = target
+		
+	func empty():
+		return (self.head == null)
 	
 	func enqueue(data):
 		var new_node = PQNode.new(data, self.target)
-		if(self.head == null):
+		if(self.head == null or typeof(self.head) == 18):
 			self.head = new_node
 		else:
 			var curr_node = self.head

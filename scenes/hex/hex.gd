@@ -13,6 +13,8 @@ var focus = false
 
 var sector_type = 'Null'
 
+var inputcount = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite_Hex.modulate = Color(red, green, blue)
@@ -25,11 +27,12 @@ func handle_lclick(q, r, _sector_type):
 	else:
 		self.lose_focus()
 
-func handle_rclick(_q, _r):
+func handle_rclick(q, r):
 	if(DataStore.focused_fleet == null):
 		self.lose_focus()
 	else:
-		self.move_focused_fleet()
+		if(q == self.q and r == self.r):
+			self.move_focused_fleet()
 
 func lose_focus():
 	if(focus):
@@ -55,7 +58,9 @@ func gain_focus():
 		DataStore.fleets[str(q) + str(r)].toggle_focus()
 
 func move_focused_fleet():
-	pass
+	var fleet_loc = {'q': DataStore.focused_fleet['q'], 'r': DataStore.focused_fleet['r']}
+	var move_path = Constants.a_star(fleet_loc, {'q': self.q, 'r': self.r})
+	print(move_path)
 
 func _on_Hex_mouse_entered():
 	self.alpha = 0.50
@@ -68,10 +73,8 @@ func _on_Hex_mouse_exited():
 	$Sprite_Hex.modulate = Color(self.red, self.green, self.blue, self.alpha)
 	SignalManager.emit_signal('clear_coordinates')
 
-
-
 func _on_Hex_input_event(_viewport, event, _shape_idx):
-	if event.get_class() == "InputEventMouseButton" and event.pressed == true:
+	if event.get_class() == "InputEventMouseButton" and event.pressed == false:
 		if event.button_index == 1:
 			SignalManager.emit_signal('lclick_hex', q, r, sector_type)
 		elif event.button_index == 2:

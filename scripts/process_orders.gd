@@ -19,7 +19,7 @@ func process_turn():
 	var move_order_resource = load("res://move_order/move_order.tscn")
 	while (current_order != null):
 		#TODO: handle all kinds of orders
-		if (current_order.get_class() == "MoveOrder"):
+		if (current_order is MoveOrder):
 			var order_completed = current_order.process_order()
 			if(not order_completed):
 				#TODO: A* the new path
