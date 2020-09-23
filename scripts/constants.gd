@@ -11,12 +11,14 @@ func set_coordinates(q, r, node):
 	node.set_global_position(Vector2(Constants.hex_height*r*sin(deg2rad(60)),Constants.hex_width*q+cos(deg2rad(60))*r*Constants.hex_height))
 
 func get_adjacent_coordinates(q, r):
-	var coord_array = []
-	for qloc in range(-1+q, 2+q):
-		for rloc in range(-1+r, 2+r):
-			if (q != 0) and (r != 0):
-				if DataStore.coordinates.has(str(qloc)+str(rloc)):
-					coord_array.append({'q': qloc, 'r': rloc})
+	var coord_array = [
+		{'q': q-1,'r': r-1},
+		{'q': q-1,'r': r},
+		{'q': q+1,'r': r},
+		{'q': q,'r': r-1},
+		{'q': q,'r': r+1},
+		{'q': q+1,'r': r+1},
+	]
 	return coord_array
 
 func convert_coordinates_to_string(q, r):
@@ -25,10 +27,10 @@ func convert_coordinates_to_string(q, r):
 #Note the largest coordinate that should be see in a 7
 func convert_string_to_coordinates(string):
 	var return_dict = {}
-	if(string.length == 2):
+	if(string.length() == 2):
 		return_dict['q'] = int(string.substr(0,1))
 		return_dict['r'] = int(string.substr(1,1))
-	elif(string.length == 3):
+	elif(string.length() == 3):
 		if(string.substr(0,1) == '-'):
 			return_dict['q'] = int(string.substr(0,2))
 			return_dict['r'] = int(string.substr(2,1))
@@ -40,42 +42,45 @@ func convert_string_to_coordinates(string):
 		return_dict['r'] = int(string.substr(2,2))
 	return return_dict
 
+func distance_between_points(a, b):
+	return (abs(a.q - b.q) + abs(a.q + a.r - b.q - b.r) + abs(a.r - b.r)) / 2
+
 func heuristic(coord1, coord2):
 	#TODO: Make this better
-	return (abs(coord1['q']-coord2['q'])+abs(coord1['r']-coord2['r']))
+	return (distance_between_points(coord1, coord2))
 
 func a_star(start, target):
 	var frontier = PriorityQueue.new(target)
 	frontier.enqueue(start)
 	var came_from = {}
 	var cost_so_far = {}
-	came_from[start] = null
-	cost_so_far[start] = 0
+	came_from[convert_coordinates_to_string(start.q, start.r)] = convert_coordinates_to_string(start.q, start.r)
+	cost_so_far[convert_coordinates_to_string(start.q, start.r)] = 0
 	while not frontier.empty():
 		var current = frontier.dequeue()
 	
-		if current.data == target:
+		if (current.data.q == target.q) and (current.data.r == target.r):
 			break
 		
 		for next in get_adjacent_coordinates(current.data['q'], current.data['r']):
 			#TODO: Calculate actual cost later
-			var new_cost = cost_so_far[current.data] + 1
-			print('Current:')
-			print(current.data)
-			print('Next:')
-			print(next)
-			print('New Cost: ' + str(new_cost))
-			if(!cost_so_far.has(next)):
-				print('New hex')
-			elif(new_cost < cost_so_far[next]):
-				print('Cheaper Path Found Than: ' + str(cost_so_far[next]))
-			print(came_from)
-			print(cost_so_far)
+			var new_cost = cost_so_far[convert_coordinates_to_string(current.data.q, current.data.r)] + 1
 			if (!cost_so_far.has(next)) or (new_cost < cost_so_far[next]):
-				cost_so_far[next] = new_cost
+				cost_so_far[convert_coordinates_to_string(next.q, next.r)] = new_cost
 				frontier.enqueue(next)
-				came_from[next] = current.data
-	return came_from
+				came_from[convert_coordinates_to_string(next.q, next.r)] = convert_coordinates_to_string(current.data.q, current.data.r)
+	var path_array = [convert_coordinates_to_string(target.q, target.r)]
+	print(convert_coordinates_to_string(start.q, start.r))
+	var i := 0
+	while (path_array[path_array.size()-1] != convert_coordinates_to_string(start.q, start.r)):
+		print(path_array)
+		path_array.append(came_from[path_array[path_array.size()-1]])
+		i += 1
+		if (i == 10):
+			break
+	for entry in path_array:
+		entry = convert_string_to_coordinates(entry)
+	return path_array
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
