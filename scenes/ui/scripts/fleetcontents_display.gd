@@ -30,9 +30,12 @@ func display(q, r, _sectortype):
 
 func count_contents(fleet):
 	var return_array = []
-	for ship_type in fleet.contents.keys():
-		var array_entry = {ship_type : fleet.contents[ship_type].size()}
-		return_array.append(array_entry)
+	for ship in fleet.contents:
+		var ship_index = return_array.find(ship.ship_type)
+		if not ship_index == -1:
+			return_array[ship_index][ship.ship_type] += 1
+		else:
+			return_array.append({ship.ship_type: 1})
 	return return_array
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -7,8 +7,9 @@ extends Area2D
 var q = 0
 var r = 0
 
-var contents = {}
-var controller = "Rebellion"
+var contents = []
+var fleet_speed = -1
+var faction = "Rebellion"
 var focused = false
 
 # Called when the node enters the scene tree for the first time.
@@ -19,10 +20,25 @@ func reposition():
 	Constants.set_coordinates(q, r, self)
 	
 func add_ship(ship):
-	if(contents.has(ship.ship_type)):
-		contents[ship.ship_type].append(ship)
-	else: 
-		contents[ship.ship_type] = [ship]
+	contents.append(ship)
+	if ship.speed < fleet_speed or fleet_speed == -1:
+		fleet_speed = ship.speed
+
+func remove_ship(ship):
+	var ship_index = contents.find(ship)
+	if ship_index != -1:
+		contents.remove(ship_index)
+		if(ship.speed == fleet_speed):
+			recalculate_speed()
+
+func recalculate_speed():
+	fleet_speed = 100
+	for ship in contents:
+		if ship.speed < fleet_speed:
+			fleet_speed = ship.speed
+
+func get_location():
+	return {'q': self.q, 'r': self.r}
 
 func toggle_focus():
 	if(focused):

@@ -76,7 +76,7 @@ func a_star(start, target):
 		path_array.push_front(came_from[path_array[0]])
 	for entry in path_array:
 		entry = convert_string_to_coordinates(entry)
-	return path_array
+	return path_array.slice(1, path_array.size() - 1)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -53,6 +53,12 @@ class OrderQueue:
 	
 	func dequeue():
 		return queue.pop_front()
+	
+	func clear_order(target):
+		var index = self.queue.find(target)
+		while index > -1:
+			self.queue.remove(index)
+			index = self.queue.find(target)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

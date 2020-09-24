@@ -23,7 +23,8 @@ func _process(delta):
 		x = 1
 	if(abs(visibleRect.position.y - mousePosition.y) <= height_scroll_margin):
 		y = -1
-	if(abs(visibleRect.end.y - mousePosition.y) <= height_scroll_margin):
+	#TODO: Find a way to dynamically alter the 256(2x panel height) to be the ui panel
+	if(abs(visibleRect.end.y - mousePosition.y - 256) <= height_scroll_margin):
 		y = 1
 	position.x += x * speed
 	position.y += y * speed

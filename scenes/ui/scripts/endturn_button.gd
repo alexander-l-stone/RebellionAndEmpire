@@ -17,4 +17,6 @@ func _ready():
 
 
 func _on_click():
+	#TODO: Confirmation for end turn
+	ProcessOrders.process_turn()
 	print('End Turn Button Clicked.')

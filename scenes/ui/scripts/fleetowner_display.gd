@@ -16,7 +16,7 @@ func clear(q, r):
 	
 func display(q, r, _sectortype):
 	if(DataStore.fleets.has(str(q) + str(r))):
-		self.text = DataStore.fleets[str(q) + str(r)].controller
+		self.text = DataStore.fleets[str(q) + str(r)].faction
 	else:
 		self.text = ""
 
