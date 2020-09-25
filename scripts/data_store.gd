@@ -57,8 +57,15 @@ class OrderQueue:
 	func clear_order(target):
 		var index = self.queue.find(target)
 		while index > -1:
+			var order = self.queue[index]
 			self.queue.remove(index)
+			order.delete_self()
 			index = self.queue.find(target)
+	
+	func clear_orders_for_fleet(fleet):
+		for order in self.queue:
+			if order.issuing_fleet == fleet:
+				self.clear_order(order)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

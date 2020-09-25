@@ -40,7 +40,8 @@ func process_turn():
 				new_queue.enqueue(move_order)
 				move_order.issuing_fleet.add_child(move_order)
 				move_order.reposition()
-			current_order = DataStore.order_queue.dequeue()
+				current_order.delete_self()
+		current_order = DataStore.order_queue.dequeue()
 	DataStore.order_queue = new_queue
 	#TODO: Handle combat?
 # Called every frame. 'delta' is the elapsed time since the previous frame.

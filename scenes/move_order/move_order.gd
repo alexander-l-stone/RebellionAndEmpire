@@ -16,9 +16,17 @@ func _ready():
 func reposition():
 	for node in travel_path:
 		var sprite = Sprite.new()
-		sprite.texture = load("res://resouces/ship_highlight.png")
+		sprite.texture = load("res://resources/ship_highlight.png")
 		Constants.set_coordinates(node.q, node.r, sprite)
 		self.add_child(sprite)
+
+func delete_self():
+	print("Deleting order")
+	for child in self.get_children():
+		if child is Sprite:
+			child.visible = false
+		self.remove_child(child)
+	self.queue_free()
 
 func process_order():
 	#if next_order != null do the todo below
@@ -27,7 +35,7 @@ func process_order():
 		issuing_fleet.r = node['r']
 		issuing_fleet.reposition()
 		#TODO: Break if there is an enemy here
-	self.queue_free()
+	self.delete_self()
 	if(issuing_fleet.q == target['q'] and issuing_fleet.r == target['r']):
 		return true
 	return false

@@ -76,11 +76,11 @@ func move_focused_fleet():
 		move_order.issuing_fleet = DataStore.focused_fleet
 		move_order.travel_path.append(Constants.convert_string_to_coordinates(point))
 		i += 1
-	DataStore.order_queue.clear_order(DataStore.focused_fleet)
+	DataStore.order_queue.clear_orders_for_fleet(DataStore.focused_fleet)
 	DataStore.order_queue.enqueue(move_order)
 	DataStore.focused_fleet.add_child(move_order)
 	move_order.reposition()
-	DataStore.focused_fleet.debug_move()
+	move_order.visible = true
 
 func _on_Hex_mouse_entered():
 	self.alpha = 0.50
