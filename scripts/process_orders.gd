@@ -18,8 +18,6 @@ func process_turn():
 	var current_order = DataStore.order_queue.dequeue()
 	var move_order_resource = load("res://scenes/move_order/move_order.tscn")
 	while (current_order != null):
-		print("Current Order:")
-		print(current_order)
 		#TODO: handle all kinds of orders
 		if (current_order is MoveOrder):
 			var order_completed = current_order.process_order()

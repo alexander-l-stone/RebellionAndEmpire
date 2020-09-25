@@ -12,15 +12,15 @@ func set_coordinates(q, r, node):
 
 func get_adjacent_coordinates(q, r):
 	var coord_array = [
-		{'q': q-1,'r': r-1},
-		{'q': q-1,'r': r},
-		{'q': q+1,'r': r},
-		{'q': q,'r': r-1},
-		{'q': q,'r': r+1},
-		{'q': q+1,'r': r+1},
+		{'r': r-1, 'q': q+1},
+		{'r': r, 'q': q-1},
+		{'r': r, 'q': q+1},
+		{'r': r-1, 'q': q},
+		{'r': r+1, 'q': q},
+		{'r': r+1, 'q': q-1},
 	]
 	return coord_array
-
+#TODO: Swap q, r to r, q
 func convert_coordinates_to_string(q, r):
 	return str(q)+str(r)
 
@@ -66,12 +66,12 @@ func a_star(start, target):
 			#TODO: Calculate actual cost later
 			var new_cost = cost_so_far[convert_coordinates_to_string(current.data.q, current.data.r)] + 1
 			if (not cost_so_far.has(convert_coordinates_to_string(next.q, next.r))) or (new_cost < cost_so_far[convert_coordinates_to_string(next.q, next.r)]):
-				if(current != null and came_from[convert_coordinates_to_string(current.data.q, current.data.r)] != convert_coordinates_to_string(next.q, next.r)):
-					cost_so_far[convert_coordinates_to_string(next.q, next.r)] = new_cost
-					came_from[convert_coordinates_to_string(next.q, next.r)] = convert_coordinates_to_string(current.data.q, current.data.r)
-					frontier.enqueue(next)
+				cost_so_far[convert_coordinates_to_string(next.q, next.r)] = new_cost
+				came_from[convert_coordinates_to_string(next.q, next.r)] = convert_coordinates_to_string(current.data.q, current.data.r)
+				frontier.enqueue(next)
 	var path_array = [convert_coordinates_to_string(target.q, target.r)]
 	var start_coord = convert_coordinates_to_string(start.q, start.r)
+
 	while (path_array[0] != start_coord):
 		path_array.push_front(came_from[path_array[0]])
 	for entry in path_array:

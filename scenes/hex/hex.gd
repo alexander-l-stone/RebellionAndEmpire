@@ -63,23 +63,16 @@ func gain_focus():
 func move_focused_fleet():
 	var move_order_resource = load("res://scenes/move_order/move_order.tscn")
 	var move_path = Constants.a_star(DataStore.focused_fleet.get_location(), {'q': self.q, 'r': self.r})
-	print("Move Path: ")
-	print(move_path)
 	var move_order = move_order_resource.instance()
 	var i = 0
 	for point in move_path:
-		print(DataStore.focused_fleet.fleet_speed)
 		if (i >= DataStore.focused_fleet.fleet_speed):
 			break
-		print(point)
 		move_order.target = get_self_pos()
 		move_order.issuing_fleet = DataStore.focused_fleet
 		move_order.travel_path.append(Constants.convert_string_to_coordinates(point))
 		i += 1
 	DataStore.order_queue.enqueue(move_order)
-	for item in DataStore.order_queue.queue:
-		print('nodes to visit: ')
-		print(item.travel_path)
 
 func _on_Hex_mouse_entered():
 	self.alpha = 0.50
