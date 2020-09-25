@@ -61,7 +61,7 @@ class OrderQueue:
 			self.queue.remove(index)
 			order.delete_self()
 			index = self.queue.find(target)
-	
+	#TODO: Clear up order removal
 	func clear_orders_for_fleet(fleet):
 		for order in self.queue:
 			if order.issuing_fleet == fleet:
