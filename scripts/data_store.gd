@@ -32,7 +32,7 @@ var planet_types = {
 }
 
 var planets = {}
-var fleets = {}
+var fleets = []
 var focused_fleet = null
 var order_queue = []
 var coordinates = {}

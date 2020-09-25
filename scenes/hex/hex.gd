@@ -41,8 +41,10 @@ func lose_focus():
 		self.blue = self.blue * 2
 		$Sprite_Hex.modulate = Color(self.red, self.green, self.blue, self.alpha)
 		focus = false
-		if(DataStore.fleets.has(str(q) + str(r))):
-			DataStore.fleets[str(q) + str(r)].remove_focus()
+		for fleet in DataStore.fleets:
+			if(fleet.q == q and fleet.r == r):
+				fleet.remove_focus()
+				break
 	else:
 		return
 
@@ -57,8 +59,10 @@ func gain_focus():
 	self.blue = self.blue * 0.5
 	$Sprite_Hex.modulate = Color(self.red, self.green, self.blue, self.alpha)
 	focus = true
-	if(DataStore.fleets.has(str(q) + str(r))):
-		DataStore.fleets[str(q) + str(r)].toggle_focus()
+	for fleet in DataStore.fleets:
+		if(fleet.q == q and fleet.r == r):
+			fleet.toggle_focus()
+			break
 
 func move_focused_fleet():
 	var move_order_resource = load("res://scenes/move_order/move_order.tscn")
@@ -72,6 +76,7 @@ func move_focused_fleet():
 		move_order.issuing_fleet = DataStore.focused_fleet
 		move_order.travel_path.append(Constants.convert_string_to_coordinates(point))
 		i += 1
+	DataStore.order_queue.clear_order(DataStore.focused_fleet)
 	DataStore.order_queue.enqueue(move_order)
 
 func _on_Hex_mouse_entered():

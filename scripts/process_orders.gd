@@ -13,6 +13,11 @@ func _ready():
 func add_order(order):
 	DataStore.order_queue.enqueue(order)
 
+func remove_orders_for_target(target):
+	for order in DataStore.order_queue:
+		if order.target == target:
+			DataStore.order_queue.clear_order(target)
+
 func process_turn():
 	var new_queue = DataStore.OrderQueue.new()
 	var current_order = DataStore.order_queue.dequeue()

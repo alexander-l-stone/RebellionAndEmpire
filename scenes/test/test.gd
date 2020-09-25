@@ -21,7 +21,7 @@ func _ready():
 	fleet.add_ship(ship1)
 	fleet.add_ship(ship2)
 	fleet.add_ship(ship3)
-	DataStore.fleets[str(fleet.q) + str(fleet.r)] = fleet
+	DataStore.fleets.append(fleet)
 	$galaxy_map.add_child(fleet)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
