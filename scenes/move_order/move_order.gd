@@ -10,16 +10,24 @@ var travel_path = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Constants.set_coordinates(target['q'], target['r'], $MoveOrder_Sprite)
+	reposition()
+	self.visible = false
+
+func reposition():
+	for node in travel_path:
+		var sprite = Sprite.new()
+		sprite.texture = load("res://resouces/ship_highlight.png")
+		Constants.set_coordinates(node.q, node.r, sprite)
+		self.add_child(sprite)
 
 func process_order():
 	#if next_order != null do the todo below
 	for node in travel_path:
 		issuing_fleet.q = node['q']
 		issuing_fleet.r = node['r']
-		print("Fleet Q: " + str(issuing_fleet.q) + ', Fleet R: ' + str(issuing_fleet.r))
 		issuing_fleet.reposition()
 		#TODO: Break if there is an enemy here
+	self.queue_free()
 	if(issuing_fleet.q == target['q'] and issuing_fleet.r == target['r']):
 		return true
 	return false

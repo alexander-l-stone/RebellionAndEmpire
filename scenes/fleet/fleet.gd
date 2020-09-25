@@ -42,18 +42,36 @@ func get_location():
 
 func toggle_focus():
 	if(focused):
-		focused = false
-		$Sprite_FleetHighlight.visible = false
-		DataStore.focused_fleet = null
+		remove_focus()
 	else:
-		focused = true
-		$Sprite_FleetHighlight.visible = true
-		DataStore.focused_fleet = self
+		gain_focus()
+
+func debug_move():
+	for node in self.get_children():
+		if node is MoveOrder:
+			print("Move Order: ")
+			print('Node')
+			print(node)
+			print('Travel path')
+			print(node.travel_path)
+			print("Visible")
+			print(node.visible)
+
+func gain_focus():
+	focused = true
+	$Sprite_FleetHighlight.visible = true
+	DataStore.focused_fleet = self
+	for node in self.get_children():
+		if node is MoveOrder:
+			node.visible = true
 
 func remove_focus():
 	focused = false
 	$Sprite_FleetHighlight.visible = false
 	DataStore.focused_fleet = null
+	for node in self.get_children():
+			if node is MoveOrder:
+				node.visible = false
 
 #TODO: Add a remove_ship and get_ship function
 

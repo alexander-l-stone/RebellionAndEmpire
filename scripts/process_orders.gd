@@ -38,6 +38,8 @@ func process_turn():
 					move_order.travel_path.append(Constants.convert_string_to_coordinates(point))
 					i += 1
 				new_queue.enqueue(move_order)
+				move_order.issuing_fleet.add_child(move_order)
+				move_order.reposition()
 			current_order = DataStore.order_queue.dequeue()
 	DataStore.order_queue = new_queue
 	#TODO: Handle combat?
