@@ -29,12 +29,13 @@ func process_turn():
 			if(not order_completed):
 				var move_path = Constants.a_star(current_order.issuing_fleet.get_location(), current_order.target)
 				var move_order = move_order_resource.instance()
+				move_order.target = current_order.target
+				move_order.issuing_fleet = current_order.issuing_fleet
+				print("target: " + str(move_order.target))
 				var i = 0
 				for point in move_path:
 					if (i >= current_order.issuing_fleet.fleet_speed):
 						break
-					move_order.target = current_order.target
-					move_order.issuing_fleet = current_order.issuing_fleet
 					move_order.travel_path.append(Constants.convert_string_to_coordinates(point))
 					i += 1
 				new_queue.enqueue(move_order)
@@ -43,6 +44,10 @@ func process_turn():
 				current_order.delete_self()
 		current_order = DataStore.order_queue.dequeue()
 	DataStore.order_queue = new_queue
+	if (DataStore.order_queue.queue.size() > 0):
+		for child in DataStore.order_queue.queue[0].issuing_fleet.get_children():
+			print(child.name)
+		
 	#TODO: Handle combat?
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

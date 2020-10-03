@@ -37,7 +37,6 @@ func process_order():
 		issuing_fleet.r = node['r']
 		issuing_fleet.reposition()
 		#TODO: Break if there is an enemy here
-	self.delete_self()
 	if(issuing_fleet.q == target['q'] and issuing_fleet.r == target['r']):
 		return true
 	return false

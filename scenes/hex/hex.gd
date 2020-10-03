@@ -68,12 +68,12 @@ func move_focused_fleet():
 	var move_order_resource = load("res://scenes/move_order/move_order.tscn")
 	var move_path = Constants.a_star(DataStore.focused_fleet.get_location(), {'q': self.q, 'r': self.r})
 	var move_order = move_order_resource.instance()
+	move_order.target = get_self_pos()
+	move_order.issuing_fleet = DataStore.focused_fleet
 	var i = 0
 	for point in move_path:
 		if (i >= DataStore.focused_fleet.fleet_speed):
 			break
-		move_order.target = get_self_pos()
-		move_order.issuing_fleet = DataStore.focused_fleet
 		move_order.travel_path.append(Constants.convert_string_to_coordinates(point))
 		i += 1
 	DataStore.order_queue.clear_orders_for_fleet(DataStore.focused_fleet)

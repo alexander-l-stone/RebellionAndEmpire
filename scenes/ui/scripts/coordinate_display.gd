@@ -15,7 +15,7 @@ func clear():
 	self.text = ""
 
 func display(q, r):
-	self.text = "X: " + String(r) + ", Y: " + String(q)
+	self.text = "R: " + String(r) + ", Q: " + String(q)
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
