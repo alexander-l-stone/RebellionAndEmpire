@@ -15,13 +15,15 @@ func _ready():
 
 func reposition():
 	for node in travel_path:
+		print('Travel Node: ')
+		print(node)
 		var sprite = Sprite.new()
 		sprite.texture = load("res://resources/ship_highlight.png")
 		Constants.set_coordinates(node.q, node.r, sprite)
+		print(sprite.get_global_position())
 		self.add_child(sprite)
 
 func delete_self():
-	print("Deleting order")
 	for child in self.get_children():
 		if child is Sprite:
 			child.visible = false
