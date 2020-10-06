@@ -31,7 +31,6 @@ func process_turn():
 				var move_order = move_order_resource.instance()
 				move_order.target = current_order.target
 				move_order.issuing_fleet = current_order.issuing_fleet
-				print("target: " + str(move_order.target))
 				var i = 0
 				for point in move_path:
 					if (i >= current_order.issuing_fleet.fleet_speed):
@@ -41,14 +40,9 @@ func process_turn():
 				new_queue.enqueue(move_order)
 				move_order.issuing_fleet.add_child(move_order)
 				move_order.reposition()
-				current_order.delete_self()
+			current_order.delete_self()
 		current_order = DataStore.order_queue.dequeue()
 	DataStore.order_queue = new_queue
-	if (DataStore.order_queue.queue.size() > 0):
-		for child in DataStore.order_queue.queue[0].issuing_fleet.get_children():
-			print(child.name)
-			if(child is MoveOrder):
-				print(child.travel_path)
 		
 	#TODO: Handle combat?
 # Called every frame. 'delta' is the elapsed time since the previous frame.

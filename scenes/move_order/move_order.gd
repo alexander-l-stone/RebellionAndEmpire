@@ -15,12 +15,9 @@ func _ready():
 
 func reposition():
 	for node in travel_path:
-		print('Travel Node: ')
-		print(node)
 		var sprite = Sprite.new()
 		sprite.texture = load("res://resources/ship_highlight.png")
 		Constants.set_coordinates(node.q - issuing_fleet.q, node.r - issuing_fleet.r, sprite)
-		print(sprite.get_global_position())
 		self.add_child(sprite)
 
 func delete_self():

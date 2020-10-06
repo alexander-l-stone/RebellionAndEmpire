@@ -19,7 +19,10 @@ func _ready():
 func _on_click():
 	#TODO: Confirmation for end turn
 	ProcessOrders.process_turn()
-	SignalManager.emit_signal("lclick_hex", 100, 100, 'end-turn')
+	SignalManager.emit_signal("lclick_hex", 100, 100, '')
 	for fleet in DataStore.fleets:
 		fleet.remove_focus()
+		print(fleet.name)
+		for child in fleet.get_children():
+			print(child.name)
 	print('End Turn Button Clicked.')
