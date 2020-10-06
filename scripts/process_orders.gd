@@ -47,6 +47,8 @@ func process_turn():
 	if (DataStore.order_queue.queue.size() > 0):
 		for child in DataStore.order_queue.queue[0].issuing_fleet.get_children():
 			print(child.name)
+			if(child is MoveOrder):
+				print(child.travel_path)
 		
 	#TODO: Handle combat?
 # Called every frame. 'delta' is the elapsed time since the previous frame.

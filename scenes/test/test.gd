@@ -16,8 +16,8 @@ func _ready():
 	var ship3 = ship_resource.instance()
 	ship3.ship_type = "cruiser"
 	ship2.ship_type = "battleship"
-	fleet.q = 0
-	fleet.r = 0
+	fleet.q = 1
+	fleet.r = 1
 	fleet.add_ship(ship1)
 	fleet.add_ship(ship2)
 	fleet.add_ship(ship3)
