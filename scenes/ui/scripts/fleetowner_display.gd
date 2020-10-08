@@ -8,16 +8,19 @@ extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	SignalManager.connect('hover_hex', self, 'display')
-	SignalManager.connect('clear_coordinates', self, 'clear')
+	SignalManager.connect('lclick_hex', self, 'display')
+	SignalManager.connect('rclick_hex', self, 'clear')
 
-func clear():
+func clear(q, r):
 	self.text = ""
-
-func display(q, r):
-	self.text = "R: " + String(r) + ", Q: " + String(q)
-
 	
+func display(q, r, _sectortype):
+	if(DataStore.fleets.has(str(q) + str(r))):
+		self.text = DataStore.fleets[str(q) + str(r)].faction
+	else:
+		self.text = ""
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -25,8 +25,9 @@ func generate_hexes():
 		for rloc in range(-2+r, 3+r):
 			if ((qloc-q)+(rloc-r) > -3) && ((qloc-q)+(rloc-r) < 3):
 				coordinate_array.append({'q': qloc, 'r': rloc})
+				DataStore.coordinates[str(qloc)+str(rloc)] = true
 				var hex = hex_resource.instance()
-				hex.set_global_position(Vector2(Constants.hex_height*rloc*sin(deg2rad(60)),Constants.hex_width*qloc+cos(deg2rad(60))*rloc*Constants.hex_height))
+				Constants.set_coordinates(qloc, rloc, hex)
 				hex.red = red
 				hex.green = green
 				hex.blue = blue
@@ -54,8 +55,11 @@ func generate_planets(coordinate_array):
 		planet.q = coordinate_array[random_coord_index]["q"]
 		planet.r = coordinate_array[random_coord_index]["r"]
 		coordinate_array.remove(random_coord_index)
+		planet.type = planet_type
+		planet.planet_name = planet_data["name"]
 		planet.building_slots = planet_data["building_slots"]
 		planet.special = planet_data['special']
+		DataStore.planets["" + str(planet.q) + str(planet.r)] = planet
 		add_child(planet)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.

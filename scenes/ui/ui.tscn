@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/ui/scripts/camera_movement.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/scripts/coordinate_display.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/scripts/ui.gd" type="Script" id=3]
 [ext_resource path="res://scenes/ui/scripts/sectortype_display.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ui/scripts/planettype_display.gd" type="Script" id=5]
+[ext_resource path="res://scenes/ui/scripts/fleetowner_display.gd" type="Script" id=6]
+[ext_resource path="res://scenes/ui/scripts/fleetcontents_display.gd" type="Script" id=7]
+[ext_resource path="res://scenes/ui/scripts/endturn_button.gd" type="Script" id=8]
 
 [node name="UI" type="Node2D"]
 script = ExtResource( 3 )
@@ -22,7 +26,7 @@ script = ExtResource( 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -128.0
-margin_right = 257.0
+margin_right = 1025.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -50,13 +54,63 @@ margin_bottom = 32.0
 script = ExtResource( 4 )
 
 [node name="UI_SelectedPlanetDetails_Panel" type="VBoxContainer" parent="UI_CanvasLayer/UI_Panel"]
-anchor_left = 0.498
+anchor_left = 0.125
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 0.125
 anchor_bottom = 1.0
-margin_left = 0.0139923
+margin_left = -0.125
 margin_top = -128.0
-margin_right = 128.5
+margin_right = 126.875
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="UI_PlanetType" type="Label" parent="UI_CanvasLayer/UI_Panel/UI_SelectedPlanetDetails_Panel"]
+margin_right = 127.0
+margin_bottom = 14.0
+script = ExtResource( 5 )
+
+[node name="UI_SelectedPlanetDetails_Panel2" type="VBoxContainer" parent="UI_CanvasLayer/UI_Panel"]
+anchor_left = 0.249
+anchor_top = 1.0
+anchor_right = 0.249
+anchor_bottom = 1.0
+margin_left = 0.774994
+margin_top = -128.0
+margin_right = 128.775
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI_FleetOwner" type="Label" parent="UI_CanvasLayer/UI_Panel/UI_SelectedPlanetDetails_Panel2"]
+margin_right = 128.0
+margin_bottom = 14.0
+script = ExtResource( 6 )
+
+[node name="UI_FleetContents" type="ScrollContainer" parent="UI_CanvasLayer/UI_Panel/UI_SelectedPlanetDetails_Panel2"]
+margin_top = 18.0
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 0, 110 )
+script = ExtResource( 7 )
+
+[node name="UI_FleetContent_VerticalScroll" type="VBoxContainer" parent="UI_CanvasLayer/UI_Panel/UI_SelectedPlanetDetails_Panel2/UI_FleetContents"]
+margin_right = 128.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 128, 110 )
+
+[node name="UI_EndTurn_Button" type="Button" parent="UI_CanvasLayer/UI_Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -67.8284
+margin_top = -21.2599
+margin_right = -0.828369
+margin_bottom = -1.25989
+text = "End Turn"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="UI_CanvasLayer/UI_Panel/UI_EndTurn_Button" to="UI_CanvasLayer/UI_Panel/UI_EndTurn_Button" method="_on_click"]

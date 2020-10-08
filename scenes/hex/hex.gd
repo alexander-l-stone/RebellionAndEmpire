@@ -25,8 +25,12 @@ func handle_lclick(q, r, _sector_type):
 	else:
 		self.lose_focus()
 
-func handle_rclick(_q, _r):
-	self.lose_focus()
+func handle_rclick(q, r):
+	if(DataStore.focused_fleet == null):
+		self.lose_focus()
+	else:
+		if(q == self.q and r == self.r):
+			self.move_focused_fleet()
 
 func lose_focus():
 	if(focus):
@@ -35,8 +39,13 @@ func lose_focus():
 		self.blue = self.blue * 2
 		$Sprite_Hex.modulate = Color(self.red, self.green, self.blue, self.alpha)
 		focus = false
+		if (DataStore.focused_fleet):
+			DataStore.focused_fleet.remove_focus()
 	else:
 		return
+
+func get_self_pos():
+	return {'q':q, 'r':r}
 
 func gain_focus():
 	if (focus):
@@ -46,6 +55,28 @@ func gain_focus():
 	self.blue = self.blue * 0.5
 	$Sprite_Hex.modulate = Color(self.red, self.green, self.blue, self.alpha)
 	focus = true
+	for fleet in DataStore.fleets:
+		if(fleet.q == q and fleet.r == r):
+			fleet.gain_focus()
+			break
+
+func move_focused_fleet():
+	var move_order_resource = preload("res://scenes/move_order/move_order.tscn")
+	var move_path = Constants.a_star(DataStore.focused_fleet.get_location(), {'q': self.q, 'r': self.r})
+	var move_order = move_order_resource.instance()
+	move_order.target = get_self_pos()
+	move_order.issuing_fleet = DataStore.focused_fleet
+	var i = 0
+	for point in move_path:
+		if (i >= DataStore.focused_fleet.fleet_speed):
+			break
+		move_order.travel_path.append(Constants.convert_string_to_coordinates(point))
+		i += 1
+	DataStore.order_queue.clear_orders_for_fleet(DataStore.focused_fleet)
+	DataStore.order_queue.enqueue(move_order)
+	DataStore.focused_fleet.add_child(move_order)
+	move_order.reposition()
+	move_order.visible = true
 
 func _on_Hex_mouse_entered():
 	self.alpha = 0.50
@@ -58,10 +89,8 @@ func _on_Hex_mouse_exited():
 	$Sprite_Hex.modulate = Color(self.red, self.green, self.blue, self.alpha)
 	SignalManager.emit_signal('clear_coordinates')
 
-
-
 func _on_Hex_input_event(_viewport, event, _shape_idx):
-	if event.get_class() == "InputEventMouseButton" and event.pressed == true:
+	if event.get_class() == "InputEventMouseButton" and event.pressed == false:
 		if event.button_index == 1:
 			SignalManager.emit_signal('lclick_hex', q, r, sector_type)
 		elif event.button_index == 2:
