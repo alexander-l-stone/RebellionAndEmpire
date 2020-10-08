@@ -21,13 +21,7 @@ func reposition():
 		self.add_child(sprite)
 
 func delete_self():
-	for child in self.get_children():
-		if child is Sprite:
-			child.visible = false
-		self.remove_child(child)
-		child.queue_free()
 	self.queue_free()
-	self.get_parent().remove_child(self)
 
 func process_order():
 	#if next_order != null do the todo below

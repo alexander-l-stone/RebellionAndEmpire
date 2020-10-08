@@ -70,8 +70,8 @@ func remove_focus():
 	$Sprite_FleetHighlight.visible = false
 	DataStore.focused_fleet = null
 	for node in self.get_children():
-			if node is MoveOrder:
-				node.visible = false
+		if node is MoveOrder:
+			node.visible = false
 
 #TODO: Add a remove_ship and get_ship function
 

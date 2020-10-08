@@ -21,7 +21,7 @@ func remove_orders_for_target(target):
 func process_turn():
 	var new_queue = DataStore.OrderQueue.new()
 	var current_order = DataStore.order_queue.dequeue()
-	var move_order_resource = load("res://scenes/move_order/move_order.tscn")
+	var move_order_resource = preload("res://scenes/move_order/move_order.tscn")
 	while (current_order != null):
 		#TODO: handle all kinds of orders
 		if (current_order is MoveOrder):

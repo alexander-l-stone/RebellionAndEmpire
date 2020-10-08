@@ -13,8 +13,6 @@ var focus = false
 
 var sector_type = 'Null'
 
-var inputcount = 0
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite_Hex.modulate = Color(red, green, blue)
@@ -41,10 +39,8 @@ func lose_focus():
 		self.blue = self.blue * 2
 		$Sprite_Hex.modulate = Color(self.red, self.green, self.blue, self.alpha)
 		focus = false
-		for fleet in DataStore.fleets:
-			if(fleet.q == q and fleet.r == r):
-				fleet.remove_focus()
-				break
+		if (DataStore.focused_fleet):
+			DataStore.focused_fleet.remove_focus()
 	else:
 		return
 
@@ -61,11 +57,11 @@ func gain_focus():
 	focus = true
 	for fleet in DataStore.fleets:
 		if(fleet.q == q and fleet.r == r):
-			fleet.toggle_focus()
+			fleet.gain_focus()
 			break
 
 func move_focused_fleet():
-	var move_order_resource = load("res://scenes/move_order/move_order.tscn")
+	var move_order_resource = preload("res://scenes/move_order/move_order.tscn")
 	var move_path = Constants.a_star(DataStore.focused_fleet.get_location(), {'q': self.q, 'r': self.r})
 	var move_order = move_order_resource.instance()
 	move_order.target = get_self_pos()
