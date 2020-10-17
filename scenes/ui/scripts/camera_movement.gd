@@ -5,6 +5,7 @@ export var speed = 10
 export var height_scroll_margin = 125
 export var width_scroll_margin = 125
 
+var ui_border = 140
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,8 +27,9 @@ func _process(delta):
 	if(abs(visibleRect.position.y - mousePosition.y) <= height_scroll_margin):
 		y = -1 + abs(visibleRect.position.y - mousePosition.y)/height_scroll_margin
 	#TODO: Find a way to dynamically alter the 256(2x panel height) to be the ui panel
-	if(abs(visibleRect.end.y - mousePosition.y - 256) <= height_scroll_margin):
-		y = abs(visibleRect.end.y - mousePosition.y - 256)/height_scroll_margin
+	var bottom_margin = visibleRect.end.y - mousePosition.y - ui_border
+	if(bottom_margin <= height_scroll_margin and bottom_margin > 0):
+		y = 1 - abs(bottom_margin)/height_scroll_margin
 	if(Input.is_action_pressed("ui_up")):
 		y += -0.8
 	if(Input.is_action_pressed("ui_down")):

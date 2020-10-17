@@ -19,6 +19,10 @@ func reposition():
 		sprite.texture = load("res://resources/ship_highlight.png")
 		Constants.set_coordinates(node.q - issuing_fleet.q, node.r - issuing_fleet.r, sprite)
 		self.add_child(sprite)
+	var sprite = Sprite.new()
+	sprite.texture = load("res://resources/ship_highlight.png")
+	Constants.set_coordinates(target.q - issuing_fleet.q, target.r - issuing_fleet.r, sprite)
+	self.add_child(sprite)
 
 func delete_self():
 	self.queue_free()
