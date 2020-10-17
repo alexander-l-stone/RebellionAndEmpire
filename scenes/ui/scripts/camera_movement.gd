@@ -1,7 +1,7 @@
 extends Camera2D
 
 
-export var speed = 12.5
+export var speed = 10
 export var height_scroll_margin = 125
 export var width_scroll_margin = 125
 
@@ -26,14 +26,14 @@ func _process(delta):
 	if(abs(visibleRect.position.y - mousePosition.y) <= height_scroll_margin):
 		y = -1 + abs(visibleRect.position.y - mousePosition.y)/height_scroll_margin
 	#TODO: Find a way to dynamically alter the 256(2x panel height) to be the ui panel
-	if(abs(visibleRect.end.y - mousePosition.y - 220) <= height_scroll_margin):
-		y = abs(visibleRect.end.y - mousePosition.y - 220)/height_scroll_margin
+	if(abs(visibleRect.end.y - mousePosition.y - 256) <= height_scroll_margin):
+		y = abs(visibleRect.end.y - mousePosition.y - 256)/height_scroll_margin
 	if(Input.is_action_pressed("ui_up")):
-		y += -1
+		y += -0.8
 	if(Input.is_action_pressed("ui_down")):
-		y += 1
+		y += 0.8
 	if(Input.is_action_pressed("ui_left")):
-		x += -1
+		x += -0.8
 	if(Input.is_action_pressed("ui_right")):
-		x += 1
+		x += 0.8
 	move_screen(x, y)
