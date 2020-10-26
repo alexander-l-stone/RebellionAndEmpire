@@ -1,0 +1,22 @@
+[gd_scene format=2]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu_NewGame_Button" type="Button" parent="."]
+anchor_left = 0.402
+anchor_top = 0.181
+anchor_right = 0.695
+anchor_bottom = 0.22
+margin_left = 0.35199
+margin_top = -0.218369
+margin_right = 0.319946
+margin_bottom = -0.170395
+text = "New Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
