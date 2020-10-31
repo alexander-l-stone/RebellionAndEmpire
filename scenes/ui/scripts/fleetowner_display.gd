@@ -17,7 +17,7 @@ func clear(q, r):
 func display(q, r, _sectortype):
 	for fleet in DataStore.fleets:
 		if fleet.q == q and fleet.r == r:
-			self.text = fleet.faction
+			self.text = fleet.fleet_name
 			return
 	self.clear(q,r)
 

@@ -13,12 +13,19 @@ var focus = false
 
 var sector_type = 'Null'
 
+var last_clicked = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite_Hex.modulate = Color(red, green, blue)
 	SignalManager.connect("lclick_hex", self, "handle_lclick")
 	SignalManager.connect("rclick_hex", self, "handle_rclick")
 
+func _process(delta):
+	if(self.last_clicked != 0):
+		self.last_clicked = max(0, last_clicked-delta)
+	
 func handle_lclick(q, r, _sector_type):
 	if q == self.q and r == self.r:
 		self.gain_focus()
@@ -92,6 +99,12 @@ func _on_Hex_mouse_exited():
 func _on_Hex_input_event(_viewport, event, _shape_idx):
 	if event.get_class() == "InputEventMouseButton" and event.pressed == false:
 		if event.button_index == 1:
-			SignalManager.emit_signal('lclick_hex', q, r, sector_type)
+			if(self.last_clicked == 0):
+				SignalManager.emit_signal('lclick_hex', q, r, sector_type)
+				self.last_clicked = 0.4
+			else:
+				SignalManager.emit_signal('doublelclick_hex', r, q)
+				print("doubleclick")
+				self.last_clicked = 0
 		elif event.button_index == 2:
 			SignalManager.emit_signal('rclick_hex', q, r)

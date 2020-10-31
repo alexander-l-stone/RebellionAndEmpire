@@ -11,6 +11,7 @@ var contents = []
 var fleet_speed = -1
 var faction = "Rebellion"
 var focused = false
+var fleet_name = faction + " Fleet"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
