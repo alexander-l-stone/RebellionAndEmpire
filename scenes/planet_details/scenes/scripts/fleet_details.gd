@@ -15,10 +15,10 @@ func reset_display():
 	for child in $FleetDetails_GridContainer.get_children():
 		child.queue_free()
 
-func set_display(contents):
-	for entry in contents:
-		var ship_type = entry.keys()[0]
-		var num_ship_type = entry[entry.keys()[0]]
+func set_display(ships):
+	for key in ships.keys():
+		var ship_type = key
+		var num_ship_type = ships[key]
 		var ship_stack = ship_stack_scene.instance()
 		ship_stack.ship_type = ship_type
 		ship_stack.ship_number = num_ship_type

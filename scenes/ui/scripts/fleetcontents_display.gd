@@ -19,10 +19,10 @@ func display(q, r, _sectortype):
 	clear(q, r)
 	for fleet in DataStore.fleets:
 		if fleet.q == q and fleet.r == r:
-			var contents = fleet.count_contents()
-			print(contents)
-			for entry in contents:
-				var display_string = str(entry.keys()[0]).capitalize() + ' ' + str(entry[entry.keys()[0]])
+			var ships = fleet.count_contents()
+			print(ships)
+			for ship_type in ships.keys():
+				var display_string = str(ship_type).capitalize() + ' ' + str(ships[ship_type])
 				var new_listing = Label.new()
 				new_listing.text = display_string
 				$UI_FleetContent_VerticalScroll.add_child(new_listing)
