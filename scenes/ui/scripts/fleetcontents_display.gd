@@ -17,16 +17,15 @@ func clear(_q, _r):
 	
 func display(q, r, _sectortype):
 	clear(q, r)
-	if(DataStore.fleets.has(str(q) + str(r))):
-		var contents = count_contents(DataStore.fleets[str(q) + str(r)])
-		var i = 0
-		for entry in contents:
-			i+=1
-			#TODO fix this
-			var display_string = str(entry[0]) + "x " + str(entry[1]).capitalize()
-			var new_listing = Label.new()
-			new_listing.text = display_string
-			$UI_FleetContent_VerticalScroll.add_child(new_listing)
+	for fleet in DataStore.fleets:
+		if fleet.q == q and fleet.r == r:
+			var contents = count_contents(fleet)
+			print(contents)
+			for entry in contents:
+				var display_string = str(entry.keys()[0]).capitalize() + ' ' + str(entry[entry.keys()[0]])
+				var new_listing = Label.new()
+				new_listing.text = display_string
+				$UI_FleetContent_VerticalScroll.add_child(new_listing)
 	
 
 func count_contents(fleet):
@@ -37,8 +36,14 @@ func count_contents(fleet):
 			return_array[ship_index][ship.ship_type] += 1
 		else:
 			return_array.append({ship.ship_type: 1})
+	return_array.sort_custom(ShipTypeSorter, "sort_by_ship_name")
 	return return_array
-		
+
+class ShipTypeSorter:
+	static func sort_by_ship_name(a, b):
+		if (a.keys()[0] <= b.keys()[0]):
+			return true
+		return false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

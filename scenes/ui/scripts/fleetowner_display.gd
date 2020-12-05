@@ -15,10 +15,11 @@ func clear(q, r):
 	self.text = ""
 	
 func display(q, r, _sectortype):
-	if(DataStore.fleets.has(str(q) + str(r))):
-		self.text = DataStore.fleets[str(q) + str(r)].faction
-	else:
-		self.text = ""
+	for fleet in DataStore.fleets:
+		if fleet.q == q and fleet.r == r:
+			self.text = fleet.faction
+			return
+	self.clear(q,r)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
