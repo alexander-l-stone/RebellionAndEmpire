@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/planet_details/planet_details.gd" type="Script" id=1]
 
 [node name="PlanetDetails" type="TabContainer"]
 margin_right = 400.0
 margin_bottom = 400.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -12,8 +15,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 32.0
-margin_right = -356.0
-margin_bottom = -344.0
+margin_right = -4.0
+margin_bottom = -4.0
 
 [node name="Planet_Sprite" type="Sprite" parent="Planet"]
 position = Vector2( 30, 30 )
@@ -37,8 +40,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 32.0
-margin_right = -356.0
-margin_bottom = -344.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="FleetScreen_ScrollContainer" type="ScrollContainer" parent="Fleets"]
+margin_top = 25.0
+margin_right = 385.0
+margin_bottom = 362.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fleets_HBoxContainer" type="VBoxContainer" parent="Fleets/FleetScreen_ScrollContainer"]
+margin_right = 360.0
+margin_bottom = 550.0
+custom_constants/separation = 50
 
 [node name="Buildings" type="Tabs" parent="."]
 visible = false
@@ -46,5 +62,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 32.0
-margin_right = -356.0
-margin_bottom = -344.0
+margin_right = -4.0
+margin_bottom = -4.0

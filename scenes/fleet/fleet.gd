@@ -32,6 +32,24 @@ func remove_ship(ship):
 		if(ship.speed == fleet_speed):
 			recalculate_speed()
 
+func remove_ship_of_type(ship_type):
+	for entry in self.contents:
+		if entry.ship_type == ship_type:
+			contents.remove(entry)
+			return true
+	return false
+
+func count_contents():
+	var return_array = []
+	for ship in self.contents:
+		var ship_index = return_array.find(ship.ship_type)
+		if not ship_index == -1:
+			return_array[ship_index][ship.ship_type] += 1
+		else:
+			return_array.append({ship.ship_type: 1})
+	return_array.sort_custom(ShipTypeSorter, "sort_by_ship_name")
+	return return_array
+
 func recalculate_speed():
 	fleet_speed = 100
 	for ship in contents:
@@ -73,6 +91,12 @@ func remove_focus():
 	for node in self.get_children():
 		if node is MoveOrder:
 			node.visible = false
+
+class ShipTypeSorter:
+	static func sort_by_ship_name(a, b):
+		if (a.keys()[0] <= b.keys()[0]):
+			return true
+		return false
 
 #TODO: Add a remove_ship and get_ship function
 
