@@ -55,11 +55,11 @@ func generate_planets(coordinate_array):
 		planet.q = coordinate_array[random_coord_index]["q"]
 		planet.r = coordinate_array[random_coord_index]["r"]
 		coordinate_array.remove(random_coord_index)
-		planet.type = planet_type
+		planet.planet_type = planet_type
 		planet.planet_name = planet_data["name"]
 		planet.building_slots = planet_data["building_slots"]
 		planet.special = planet_data['special']
-		DataStore.planets[Constants.convert_coordinates_to_string(q, r)] = planet
+		DataStore.planets[Constants.convert_coordinates_to_string(planet.q, planet.r)] = planet
 		add_child(planet)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.

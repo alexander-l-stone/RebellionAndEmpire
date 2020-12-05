@@ -20,6 +20,3 @@ func _ready():
 	fleet.add_ship(ship3)
 	DataStore.fleets.append(fleet)
 	$galaxy_map.add_child(fleet)
-	
-
-

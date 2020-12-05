@@ -13,6 +13,7 @@ func _ready():
 
 func draw_planet_tab():
 	if planet != null:
+		print(planet.planet_name)
 		$Planet/Planet_Sprite.texture = load("res://resources/" + planet.planet_type + ".png")
 		$Planet/Planet_Label.text = planet.planet_name
 

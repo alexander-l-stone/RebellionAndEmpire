@@ -15,20 +15,14 @@ func _ready():
 #func _process(delta):
 #	pass
 func open_planet_details(r, q):
-	print('doubleclick')
-	print('r:' + str(r))
-	print('q:' + str(q))
 	var planet_details = planet_details_scene.instance()
 	var planet = null
-	print(DataStore.planets)
 	if(DataStore.planets.has(Constants.convert_coordinates_to_string(q, r))):
 		planet = DataStore.planets[Constants.convert_coordinates_to_string(q, r)]
-	print(planet)
 	var fleets = []
 	for fleet in DataStore.fleets:
 		if(fleet.q == q and fleet.r == r):
 			fleets.append(fleet)
-	print(fleets)
 	planet_details.planet = planet
 	planet_details.fleets = fleets
 	$UI_Camera.add_child(planet_details)

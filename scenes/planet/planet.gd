@@ -7,7 +7,7 @@ extends Sprite
 var q = 0
 var r = 0
 
-var type = "barren_planet"
+var planet_type = "barren_planet"
 var planet_name = "Barren Planet"
 
 var buildings = []
