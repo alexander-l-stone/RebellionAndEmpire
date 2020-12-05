@@ -3,8 +3,10 @@
 [ext_resource path="res://scenes/planet_details/planet_details.gd" type="Script" id=1]
 
 [node name="PlanetDetails" type="TabContainer"]
-margin_right = 400.0
-margin_bottom = 400.0
+margin_left = -200.0
+margin_top = -200.0
+margin_right = 200.0
+margin_bottom = 200.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -52,8 +54,6 @@ __meta__ = {
 }
 
 [node name="Fleets_HBoxContainer" type="VBoxContainer" parent="Fleets/FleetScreen_ScrollContainer"]
-margin_right = 360.0
-margin_bottom = 550.0
 custom_constants/separation = 50
 
 [node name="Buildings" type="Tabs" parent="."]

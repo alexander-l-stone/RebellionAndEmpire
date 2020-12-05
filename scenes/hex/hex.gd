@@ -104,7 +104,6 @@ func _on_Hex_input_event(_viewport, event, _shape_idx):
 				self.last_clicked = 0.4
 			else:
 				SignalManager.emit_signal('doublelclick_hex', r, q)
-				print("doubleclick")
 				self.last_clicked = 0
 		elif event.button_index == 2:
 			SignalManager.emit_signal('rclick_hex', q, r)
