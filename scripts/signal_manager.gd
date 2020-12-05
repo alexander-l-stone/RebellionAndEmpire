@@ -6,6 +6,7 @@ signal hover_hex(q, r)
 signal lclick_hex(q, r, sectortype)
 signal rclick_hex(q, r)
 signal doublelclick_hex(r, q)
+signal new_fleet(r, q, i)
 
 func _ready():
 	pass # Replace with function body.

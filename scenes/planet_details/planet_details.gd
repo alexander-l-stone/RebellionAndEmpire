@@ -3,6 +3,7 @@ extends TabContainer
 var planet = null
 var fleets = null
 
+var fleet_scene = load("res://scenes/fleet/fleet.tscn")
 var fleet_details_scene = load("res://scenes/planet_details/scenes/fleet_details.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -10,6 +11,7 @@ func _ready():
 	draw_planet_tab()
 	draw_fleets_tab()
 	draw_buildings_tab()
+	SignalManager.connect("new_fleet", self, "new_fleet")
 
 func draw_planet_tab():
 	if planet != null:
@@ -19,10 +21,13 @@ func draw_planet_tab():
 
 func draw_fleets_tab():
 	if (fleets != null) and fleets.size() > 0:
+		var i = 0
 		for fleet in fleets:
-			var fleet_scene = fleet_details_scene.instance()
-			fleet_scene.fleet = fleet
-			$Fleets/FleetScreen_ScrollContainer/Fleets_HBoxContainer.add_child(fleet_scene)
+			var fleet_details = fleet_details_scene.instance()
+			fleet_details.index = i
+			fleet_details.fleet = fleet
+			$Fleets/FleetScreen_ScrollContainer/Fleets_HBoxContainer.add_child(fleet_details)
+			i += 1
 
 func draw_buildings_tab():
 	pass
@@ -31,7 +36,14 @@ func _input(event):
 	if (event is InputEventMouseButton) and event.pressed:
 		var local_event = make_input_local(event)
 		if !Rect2(Vector2(0,0),rect_size).has_point(local_event.position):
+			DataStore.cleanEmptyFleets()
 			self.queue_free()
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func new_fleet(_r, _q, index):
+	fleets.insert(index+1, fleet_scene.instance())
+	clear()
+	draw_fleets_tab()
+
+func clear():
+	for child in $Fleets/FleetScreen_ScrollContainer/Fleets_HBoxContainer.get_children():
+		child.queue_free()

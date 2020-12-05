@@ -8,7 +8,8 @@ var planet_details_scene = load("res://scenes/planet_details/planet_details.tscn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-		SignalManager.connect("doublelclick_hex", self, "open_planet_details")
+	SignalManager.connect("doublelclick_hex", self, "open_planet_details")
+	SignalManager.connect("new_fleet", self, "brr")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,3 +27,6 @@ func open_planet_details(r, q):
 	planet_details.planet = planet
 	planet_details.fleets = fleets
 	$UI_Camera.add_child(planet_details)
+	
+func brr(r,q,i):
+	print("brr" + str(i))

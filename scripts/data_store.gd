@@ -37,7 +37,10 @@ var focused_fleet = null
 var order_queue = []
 var coordinates = {}
 
-
+func cleanEmptyFleets():
+	for fleet in fleets:
+		if fleet.contents.size() == 0:
+			fleets.erase(fleet)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
