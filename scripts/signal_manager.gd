@@ -5,6 +5,7 @@ signal clear_coordinates
 signal hover_hex(q, r)
 signal lclick_hex(q, r, sectortype)
 signal rclick_hex(q, r)
+signal doublelclick_hex(r, q)
 
 func _ready():
 	pass # Replace with function body.

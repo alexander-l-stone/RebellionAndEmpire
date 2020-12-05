@@ -19,7 +19,7 @@ func display(q, r, _sectortype):
 	clear(q, r)
 	for fleet in DataStore.fleets:
 		if fleet.q == q and fleet.r == r:
-			var contents = count_contents(fleet)
+			var contents = fleet.count_contents()
 			print(contents)
 			for entry in contents:
 				var display_string = str(entry.keys()[0]).capitalize() + ' ' + str(entry[entry.keys()[0]])
@@ -28,22 +28,6 @@ func display(q, r, _sectortype):
 				$UI_FleetContent_VerticalScroll.add_child(new_listing)
 	
 
-func count_contents(fleet):
-	var return_array = []
-	for ship in fleet.contents:
-		var ship_index = return_array.find(ship.ship_type)
-		if not ship_index == -1:
-			return_array[ship_index][ship.ship_type] += 1
-		else:
-			return_array.append({ship.ship_type: 1})
-	return_array.sort_custom(ShipTypeSorter, "sort_by_ship_name")
-	return return_array
-
-class ShipTypeSorter:
-	static func sort_by_ship_name(a, b):
-		if (a.keys()[0] <= b.keys()[0]):
-			return true
-		return false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
