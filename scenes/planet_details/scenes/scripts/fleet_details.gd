@@ -18,6 +18,7 @@ func reset_display():
 		child.queue_free()
 
 func set_display(ships):
+	var i = 0
 	for key in ships.keys():
 		var ship_type = key
 		var num_ship_type = ships[key]
@@ -25,6 +26,8 @@ func set_display(ships):
 		ship_stack.ship_type = ship_type
 		ship_stack.ship_number = num_ship_type
 		ship_stack.fleet = fleet
+		ship_stack.index = i
+		i += 1
 		$FleetDetails_GridContainer.add_child(ship_stack)
 	var button = new_fleet_button.instance()
 	button.r = fleet.r
