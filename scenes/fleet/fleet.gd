@@ -35,9 +35,10 @@ func remove_ship(ship):
 func remove_ship_of_type(ship_type):
 	for entry in self.contents:
 		if entry.ship_type == ship_type:
-			contents.remove(entry)
-			return true
-	return false
+			contents.erase(entry)
+			self.recalculate_speed()
+			return entry
+	return null
 
 func count_contents():
 	var fleet = {}

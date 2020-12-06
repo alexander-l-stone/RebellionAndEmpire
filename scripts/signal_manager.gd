@@ -8,6 +8,7 @@ signal rclick_hex(q, r)
 signal doublelclick_hex(r, q)
 signal new_fleet(r, q, i)
 signal select_ship_stack(ship_stack)
+signal redraw_planet_details_fleet()
 
 func _ready():
 	pass # Replace with function body.

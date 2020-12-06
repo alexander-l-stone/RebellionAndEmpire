@@ -13,6 +13,11 @@ func _ready():
 	draw_buildings_tab()
 	SignalManager.connect("new_fleet", self, "new_fleet")
 	SignalManager.connect("select_ship_stack", self, "on_select_ship_stack")
+	SignalManager.connect("redraw_planet_details_fleet", self, "redraw_fleets")
+
+func redraw_fleets():
+	self.clear()
+	self.draw_fleets_tab()
 
 func draw_planet_tab():
 	if planet != null:
@@ -38,6 +43,14 @@ func on_select_ship_stack(ship_stack):
 		DataStore.selected_ship_stack.unselect_self()
 	DataStore.selected_ship_stack = ship_stack
 	
+func on_transfer_ship_stack(ship_stack, fleet):
+	print("In on_transfer_ship_stack")
+	var found_ship = ship_stack.fleet.remove_ship_of_type(ship_stack.ship_type)
+	print('I found this: ' + str(found_ship))
+	if(found_ship != null):
+		fleet.add_ship(found_ship)
+	DataStore.focused_fleet = fleet
+	self.redraw_fleets()
 
 func _input(event):
 	if (event is InputEventMouseButton) and event.pressed:
@@ -48,8 +61,8 @@ func _input(event):
 
 func new_fleet(_r, _q, index):
 	fleets.insert(index+1, fleet_scene.instance())
-	clear()
-	draw_fleets_tab()
+	self.clear()
+	self.draw_fleets_tab()
 
 func clear():
 	for child in $Fleets/FleetScreen_ScrollContainer/Fleets_HBoxContainer.get_children():
