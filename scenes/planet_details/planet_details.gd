@@ -12,6 +12,7 @@ func _ready():
 	draw_fleets_tab()
 	draw_buildings_tab()
 	SignalManager.connect("new_fleet", self, "new_fleet")
+	SignalManager.connect("select_ship_stack", self, "on_select_ship_stack")
 
 func draw_planet_tab():
 	if planet != null:
@@ -31,6 +32,12 @@ func draw_fleets_tab():
 
 func draw_buildings_tab():
 	pass
+	
+func on_select_ship_stack(ship_stack):
+	if (Constants.selected_ship_stack != null):
+		Constants.selected_ship_stack.unselect_self()
+	Constants.selected_ship_stack = ship_stack
+	
 
 func _input(event):
 	if (event is InputEventMouseButton) and event.pressed:

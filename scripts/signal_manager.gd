@@ -7,6 +7,7 @@ signal lclick_hex(q, r, sectortype)
 signal rclick_hex(q, r)
 signal doublelclick_hex(r, q)
 signal new_fleet(r, q, i)
+signal select_ship_stack(ship_stack)
 
 func _ready():
 	pass # Replace with function body.
