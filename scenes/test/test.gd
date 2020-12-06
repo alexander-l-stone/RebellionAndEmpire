@@ -17,6 +17,8 @@ func _ready():
 	var ship6 = ship_resource.instance()
 	ship3.ship_type = "cruiser"
 	ship2.ship_type = "battleship"
+	ship3.speed = 1
+	ship2.speed = 1
 	fleet1.q = 1
 	fleet1.r = 1
 	fleet1.add_ship(ship1)
