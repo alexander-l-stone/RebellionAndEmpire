@@ -7,6 +7,7 @@ margin_left = -200.0
 margin_top = -200.0
 margin_right = 200.0
 margin_bottom = 200.0
+mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -19,6 +20,7 @@ margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
+mouse_filter = 1
 
 [node name="Planet_Sprite" type="Sprite" parent="Planet"]
 position = Vector2( 30, 30 )
@@ -44,11 +46,13 @@ margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
+mouse_filter = 1
 
 [node name="FleetScreen_ScrollContainer" type="ScrollContainer" parent="Fleets"]
 margin_top = 25.0
 margin_right = 385.0
 margin_bottom = 362.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -64,3 +68,4 @@ margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
+mouse_filter = 1
