@@ -29,7 +29,7 @@ func _input(event):
 		if(self.mouse_inside) and event.pressed:
 			print('Mouse Click: ' + str(self))
 			self.selected = true
-			$Ship_Sprite.modulate = Color(0.5, 0, 0)
+			$Ship_Sprite.modulate = Color(1.0, 0, 0)
 			SignalManager.emit_signal("select_ship_stack", self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

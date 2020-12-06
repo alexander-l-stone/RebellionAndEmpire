@@ -37,6 +37,8 @@ var focused_fleet = null
 var order_queue = []
 var coordinates = {}
 
+var selected_ship_stack = null
+
 func cleanEmptyFleets():
 	for fleet in fleets:
 		if fleet.contents.size() == 0:

@@ -9,11 +9,18 @@ var new_fleet_button = load("res://scenes/planet_details/scenes/new_fleet_button
 
 var mouse_inside = false
 
+var focused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if fleet != null:
 		reset_display()
 		set_display(self.fleet.count_contents())
+		print(DataStore.focused_fleet)
+		print(fleet)
+		if (DataStore.focused_fleet == fleet):
+			self.modulate = Color(0, 1.0, 0)
+			self.focused = true
 
 func reset_display():
 	for child in $FleetDetails_GridContainer.get_children():

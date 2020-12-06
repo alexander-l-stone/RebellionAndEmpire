@@ -34,9 +34,9 @@ func draw_buildings_tab():
 	pass
 	
 func on_select_ship_stack(ship_stack):
-	if (Constants.selected_ship_stack != null):
-		Constants.selected_ship_stack.unselect_self()
-	Constants.selected_ship_stack = ship_stack
+	if (DataStore.selected_ship_stack != null):
+		DataStore.selected_ship_stack.unselect_self()
+	DataStore.selected_ship_stack = ship_stack
 	
 
 func _input(event):
