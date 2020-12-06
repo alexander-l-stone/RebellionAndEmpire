@@ -7,11 +7,13 @@ var index: int = 0
 var ship_stack_scene = load("res://scenes/planet_details/scenes/ship_stack.tscn")
 var new_fleet_button = load("res://scenes/planet_details/scenes/new_fleet_button.tscn")
 
+var mouse_inside = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if fleet != null:
 		reset_display()
-		set_display(fleet.count_contents())
+		set_display(self.fleet.count_contents())
 
 func reset_display():
 	for child in $FleetDetails_GridContainer.get_children():
@@ -35,4 +37,15 @@ func set_display(ships):
 	button.index = index
 	$FleetDetails_GridContainer.add_child(button)
 
+func _input(event):
+	if(mouse_inside):
+		if (event is InputEventMouseButton) and event.pressed:
+			print('Mouse Click: ' + str(self))
 
+
+func _on_FleetDetails_mouse_entered():
+	self.mouse_inside = true
+
+
+func _on_FleetDetails_mouse_exited():
+	self.mouse_inside = false

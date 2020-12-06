@@ -23,8 +23,8 @@ func draw_self():
 	$NumShips_Label.text = "x" + str(ship_number)
 
 func _input(event):
-	if (event is InputEventMouseButton) and event.pressed:
-		if(mouse_inside):
+	if(mouse_inside):
+		if (event is InputEventMouseButton) and event.pressed:
 			print('Mouse Click: ' + str(self))
 
 
