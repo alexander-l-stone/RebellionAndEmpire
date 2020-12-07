@@ -11,7 +11,7 @@ func _ready():
 	draw_planet_tab()
 	draw_fleets_tab()
 	draw_buildings_tab()
-	SignalManager.connect("new_fleet", self, "new_fleet")
+	SignalManager.connect("new_fleet_creation", self, "new_fleet")
 	SignalManager.connect("select_ship_stack", self, "on_select_ship_stack")
 	SignalManager.connect("redraw_planet_details_fleet", self, "redraw_fleets")
 
@@ -56,13 +56,19 @@ func _input(event):
 	if (event is InputEventMouseButton) and event.pressed:
 		var local_event = make_input_local(event)
 		if !Rect2(Vector2(0,0),rect_size).has_point(local_event.position):
+			for fleet in DataStore.fleets:
+				print("Fleet: " + str(fleet))
+				print("Contents: " + str(fleet.contents))
 			DataStore.cleanEmptyFleets()
 			self.queue_free()
 
-func new_fleet(_r, _q, index):
-	fleets.insert(index+1, fleet_scene.instance())
-	self.clear()
-	self.draw_fleets_tab()
+func new_fleet(r, q, index):
+	var new_fleet = self.fleet_scene.instance()
+	new_fleet.r = r
+	new_fleet.q = q
+	fleets.insert(index+1, new_fleet)
+	DataStore.fleets.append(new_fleet)
+	self.redraw_fleets()
 
 func clear():
 	for child in $Fleets/FleetScreen_ScrollContainer/Fleets_HBoxContainer.get_children():

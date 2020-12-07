@@ -11,4 +11,4 @@ func _ready():
 
 
 func _on_NewFleetButton_button_down():
-	SignalManager.emit_signal("new_fleet", r, q, index)
+	SignalManager.emit_signal("new_fleet_creation", r, q, index)

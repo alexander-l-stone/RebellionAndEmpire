@@ -31,6 +31,9 @@ func generate_sectors():
 		sector.generate_hexes()
 		add_child(sector)
 
+func add_fleet(fleet):
+	self.add_child(fleet)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
