@@ -9,6 +9,7 @@ func _ready():
 	pass # Replace with function body.
 
 func set_coordinates(q, r, node):
+
 	node.set_global_position(Vector2(Constants.hex_height*r*sin(deg2rad(60)),Constants.hex_width*q+cos(deg2rad(60))*r*Constants.hex_height))
 
 func get_adjacent_coordinates(q, r):

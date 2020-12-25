@@ -20,7 +20,6 @@ func display(q, r, _sectortype):
 	for fleet in DataStore.fleets:
 		if fleet.q == q and fleet.r == r:
 			var ships = fleet.count_contents()
-			print(ships)
 			for ship_type in ships.keys():
 				var display_string = str(ship_type).capitalize() + ' ' + str(ships[ship_type])
 				var new_listing = Label.new()

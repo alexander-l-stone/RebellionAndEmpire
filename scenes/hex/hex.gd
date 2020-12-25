@@ -18,6 +18,7 @@ var last_clicked = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.z_index = -1
 	$Sprite_Hex.modulate = Color(red, green, blue)
 	SignalManager.connect("lclick_hex", self, "handle_lclick")
 	SignalManager.connect("rclick_hex", self, "handle_rclick")

@@ -44,9 +44,7 @@ func on_select_ship_stack(ship_stack):
 	DataStore.selected_ship_stack = ship_stack
 	
 func on_transfer_ship_stack(ship_stack, fleet):
-	print("In on_transfer_ship_stack")
 	var found_ship = ship_stack.fleet.remove_ship_of_type(ship_stack.ship_type)
-	print('I found this: ' + str(found_ship))
 	if(found_ship != null):
 		fleet.add_ship(found_ship)
 	DataStore.focused_fleet = fleet
@@ -56,9 +54,6 @@ func _input(event):
 	if (event is InputEventMouseButton) and event.pressed:
 		var local_event = make_input_local(event)
 		if !Rect2(Vector2(0,0),rect_size).has_point(local_event.position):
-			for fleet in DataStore.fleets:
-				print("Fleet: " + str(fleet))
-				print("Contents: " + str(fleet.contents))
 			DataStore.cleanEmptyFleets()
 			self.queue_free()
 

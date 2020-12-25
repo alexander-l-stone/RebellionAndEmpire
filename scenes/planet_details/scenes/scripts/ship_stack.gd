@@ -27,7 +27,6 @@ func draw_self():
 func _input(event):
 	if (event is InputEventMouseButton):
 		if(self.mouse_inside) and event.pressed:
-			print('Mouse Click: ' + str(self))
 			self.selected = true
 			$Ship_Sprite.modulate = Color(1.0, 0, 0)
 			SignalManager.emit_signal("select_ship_stack", self)

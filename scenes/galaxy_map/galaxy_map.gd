@@ -9,6 +9,7 @@ signal generate
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_sectors()
+	SignalManager.connect("new_fleet", self, "add_fleet")
 
 func generate_sectors():
 	var sector_resource = load("res://scenes/sector/sector.tscn")
@@ -33,6 +34,7 @@ func generate_sectors():
 
 func add_fleet(fleet):
 	self.add_child(fleet)
+	fleet.reposition()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

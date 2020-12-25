@@ -23,3 +23,5 @@ func _on_click():
 	for fleet in DataStore.fleets:
 		fleet.remove_focus()
 		print(str(fleet))
+		print('Q: ' + str(fleet.q) + ', R: ' + str(fleet.r))
+		print('X: ' + str(fleet.position.x) + ', Y: ' + str(fleet.position.y))
