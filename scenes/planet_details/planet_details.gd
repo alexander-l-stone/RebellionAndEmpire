@@ -61,9 +61,11 @@ func new_fleet(r, q, index):
 	var new_fleet = self.fleet_scene.instance()
 	new_fleet.r = r
 	new_fleet.q = q
+	new_fleet.name = str(index+1)
 	fleets.insert(index+1, new_fleet)
 	DataStore.fleets.append(new_fleet)
 	self.redraw_fleets()
+	SignalManager.emit_signal("new_fleet", new_fleet)
 
 func clear():
 	for child in $Fleets/FleetScreen_ScrollContainer/Fleets_HBoxContainer.get_children():
