@@ -19,8 +19,6 @@ func _ready():
 
 func reposition():
 	Constants.set_coordinates(q, r, self)
-	print('Im being moved' + self.fleet_name)
-	print($Sprite_Fleet.texture.resource_path)
 	
 func add_ship(ship):
 	contents.append(ship)
