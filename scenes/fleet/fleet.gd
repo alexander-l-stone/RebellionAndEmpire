@@ -35,20 +35,19 @@ func remove_ship(ship):
 func remove_ship_of_type(ship_type):
 	for entry in self.contents:
 		if entry.ship_type == ship_type:
-			contents.remove(entry)
-			return true
-	return false
+			contents.erase(entry)
+			self.recalculate_speed()
+			return entry
+	return null
 
 func count_contents():
-	var return_array = []
+	var fleet = {}
 	for ship in self.contents:
-		var ship_index = return_array.find(ship.ship_type)
-		if not ship_index == -1:
-			return_array[ship_index][ship.ship_type] += 1
+		if fleet.has(ship.ship_type):
+			fleet[ship.ship_type] += 1
 		else:
-			return_array.append({ship.ship_type: 1})
-	return_array.sort_custom(ShipTypeSorter, "sort_by_ship_name")
-	return return_array
+			fleet[ship.ship_type] = 1
+	return fleet
 
 func recalculate_speed():
 	fleet_speed = 100

@@ -8,7 +8,7 @@ var planet_details_scene = load("res://scenes/planet_details/planet_details.tscn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-		SignalManager.connect("doublelclick_hex", self, "open_planet_details")
+	SignalManager.connect("doublelclick_hex", self, "open_planet_details")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

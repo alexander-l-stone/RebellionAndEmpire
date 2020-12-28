@@ -22,7 +22,6 @@ func _on_click():
 	SignalManager.emit_signal("lclick_hex", 100, 100, '')
 	for fleet in DataStore.fleets:
 		fleet.remove_focus()
-		print(fleet.name)
-		for child in fleet.get_children():
-			print(child.name)
-	print('End Turn Button Clicked.')
+		print(str(fleet))
+		print('Q: ' + str(fleet.q) + ', R: ' + str(fleet.r))
+		print('X: ' + str(fleet.position.x) + ', Y: ' + str(fleet.position.y))
