@@ -12,6 +12,8 @@ export var red = 0.0
 export var green = 0.0
 export var blue = 0.0
 
+var building_scene = load("res://scenes/building/building.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Make all the hexes
@@ -59,6 +61,10 @@ func generate_planets(coordinate_array):
 		planet.planet_name = planet_data["name"]
 		planet.planetary_building_slots = planet_data["planetary_building_slots"]
 		planet.planetary_building_slots = planet_data["orbital_building_slots"]
+		var orbital_building = self.building_scene.instance()
+		var planetary_building = self.building_scene.instance()
+		planet.planetary_buildings.append(planetary_building)
+		planet.orbital_buildings.append(orbital_building)
 		planet.special = planet_data['special']
 		DataStore.planets[Constants.convert_coordinates_to_string(planet.q, planet.r)] = planet
 		add_child(planet)

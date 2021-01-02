@@ -11,7 +11,7 @@ var planet_type = "barren_planet"
 var planet_name = "Barren Planet"
 
 var planetary_buildings = []
-var orbital_buidlings = []
+var orbital_buildings = []
 var garrison = {}
 var special_units = {}
 var planetary_building_slots = 2
