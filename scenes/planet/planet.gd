@@ -25,6 +25,19 @@ func _ready():
 func reposition():
 	Constants.set_coordinates(q, r, self)
 
+func add_building(building, building_slot_type):
+	if building_slot_type == 'planetary':
+		if planetary_buildings.size() == planetary_building_slots:
+			return false
+		else:
+			planetary_buildings.append(building)
+			return true
+	if building_slot_type == 'orbital':
+		if orbital_buildings.size() == orbital_building_slots:
+			return false
+		else:
+			orbital_buildings.append(building)
+			return true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

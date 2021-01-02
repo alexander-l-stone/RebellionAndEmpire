@@ -73,6 +73,7 @@ margin_top = -0.104004
 margin_right = 383.0
 margin_bottom = 77.896
 rect_pivot_offset = Vector2( 598.382, 20 )
+custom_constants/separation = 56
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -86,6 +87,7 @@ margin_top = 0.279999
 margin_right = 378.256
 margin_bottom = 78.28
 rect_pivot_offset = Vector2( 598.382, 20 )
+custom_constants/separation = 56
 __meta__ = {
 "_edit_use_anchors_": false
 }

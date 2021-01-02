@@ -60,11 +60,12 @@ func generate_planets(coordinate_array):
 		planet.planet_type = planet_type
 		planet.planet_name = planet_data["name"]
 		planet.planetary_building_slots = planet_data["planetary_building_slots"]
-		planet.planetary_building_slots = planet_data["orbital_building_slots"]
-		var orbital_building = self.building_scene.instance()
-		var planetary_building = self.building_scene.instance()
-		planet.planetary_buildings.append(planetary_building)
-		planet.orbital_buildings.append(orbital_building)
+		planet.orbital_building_slots = planet_data["orbital_building_slots"]
+		for x in range(0,6):
+			var orbital_building = self.building_scene.instance()
+			var planetary_building = self.building_scene.instance()
+			planet.add_building(orbital_building, 'orbital')
+			planet.add_building(planetary_building, 'planetary')
 		planet.special = planet_data['special']
 		DataStore.planets[Constants.convert_coordinates_to_string(planet.q, planet.r)] = planet
 		add_child(planet)
