@@ -10,10 +10,12 @@ var r = 0
 var planet_type = "barren_planet"
 var planet_name = "Barren Planet"
 
-var buildings = []
+var planetary_buildings = []
+var orbital_buidlings = []
 var garrison = {}
 var special_units = {}
-var building_slots = 2
+var planetary_building_slots = 2
+var orbital_building_slots = 2
 var special = {}
 
 # Called when the node enters the scene tree for the first time.
