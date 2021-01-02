@@ -11,7 +11,6 @@ var building_details_scene = load("res://scenes/planet_details/scenes/building_d
 func _ready():
 	draw_planet_tab()
 	draw_fleets_tab()
-	draw_buildings_tab()
 	SignalManager.connect("new_fleet_creation", self, "new_fleet")
 	SignalManager.connect("select_ship_stack", self, "on_select_ship_stack")
 	SignalManager.connect("redraw_planet_details_fleet", self, "redraw_fleets")
@@ -31,11 +30,11 @@ func draw_planet_tab():
 		$Planet/Planet_Label.text = planet.planet_name
 		for building in self.planet.planetary_buildings:
 			var new_building_details = self.building_details_scene.instance()
-			new_building_details.add_child(building)
+			new_building_details.add_child(building.duplicate())
 			$Planet/Planetary_Buildings_Container.add_child(new_building_details)
 		for building in self.planet.orbital_buildings:
 			var new_building_details = self.building_details_scene.instance()
-			new_building_details.add_child(building)
+			new_building_details.add_child(building.duplicate())
 			$Planet/Orbital_Buildings_Container.add_child(new_building_details)
 
 func draw_fleets_tab():
@@ -47,9 +46,6 @@ func draw_fleets_tab():
 			fleet_details.fleet = fleet
 			$Fleets/FleetScreen_ScrollContainer/Fleets_HBoxContainer.add_child(fleet_details)
 			i += 1
-
-func draw_buildings_tab():
-	pass
 	
 func on_select_ship_stack(ship_stack):
 	if (DataStore.selected_ship_stack != null):
