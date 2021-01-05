@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/planet_details/scenes/scripts/building_details.gd" type="Script" id=1]
+[ext_resource path="res://resources/style_boxes/orbital_bg.tres" type="StyleBox" id=2]
+
+[node name="Building_Details" type="Panel"]
+show_behind_parent = true
+anchor_right = 0.062
+anchor_bottom = 0.083
+margin_right = -15.488
+margin_bottom = -15.744
+rect_min_size = Vector2( 64, 64 )
+mouse_filter = 1
+custom_styles/panel = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

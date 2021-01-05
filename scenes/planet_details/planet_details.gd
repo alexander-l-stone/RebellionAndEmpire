@@ -5,38 +5,50 @@ var fleets = null
 
 var fleet_scene = load("res://scenes/fleet/fleet.tscn")
 var fleet_details_scene = load("res://scenes/planet_details/scenes/fleet_details.tscn")
+var planetary_building_details_scene = load("res://scenes/planet_details/scenes/planetary_building_details.tscn")
+var orbital_building_details_scene = load("res://scenes/planet_details/scenes/orbital_building_details.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	draw_planet_tab()
 	draw_fleets_tab()
-	draw_buildings_tab()
 	SignalManager.connect("new_fleet_creation", self, "new_fleet")
 	SignalManager.connect("select_ship_stack", self, "on_select_ship_stack")
 	SignalManager.connect("redraw_planet_details_fleet", self, "redraw_fleets")
 
 func redraw_fleets():
-	self.clear()
+	self.clear('fleet')
+	self.draw_fleets_tab()
+
+func redraw_planet():
+	self.clear('planet')
 	self.draw_fleets_tab()
 
 func draw_planet_tab():
-	if planet != null:
-		print(planet.planet_name)
+	if self.planet != null:
+		print(self.planet.planet_name)
 		$Planet/Planet_Sprite.texture = load("res://resources/" + planet.planet_type + ".png")
 		$Planet/Planet_Label.text = planet.planet_name
+		for i in range(0, planet.planetary_building_slots):
+			var new_building_details = self.planetary_building_details_scene.instance()
+			if i < planet.planetary_buildings.size():
+				new_building_details.add_building(planet.planetary_buildings[i].duplicate())
+			$Planet/Planetary_Buildings_Container.add_child(new_building_details)
+		for i in range(0, planet.orbital_building_slots):
+			var new_building_details = self.orbital_building_details_scene.instance()
+			if i < planet.orbital_buildings.size():
+				new_building_details.add_building(planet.orbital_buildings[i].duplicate())
+			$Planet/Orbital_Buildings_Container.add_child(new_building_details)
 
 func draw_fleets_tab():
 	if (fleets != null) and fleets.size() > 0:
 		var i = 0
 		for fleet in fleets:
-			var fleet_details = fleet_details_scene.instance()
+			var fleet_details = self.fleet_details_scene.instance()
 			fleet_details.index = i
 			fleet_details.fleet = fleet
 			$Fleets/FleetScreen_ScrollContainer/Fleets_HBoxContainer.add_child(fleet_details)
 			i += 1
-
-func draw_buildings_tab():
-	pass
 	
 func on_select_ship_stack(ship_stack):
 	if (DataStore.selected_ship_stack != null):
@@ -67,6 +79,13 @@ func new_fleet(r, q, index):
 	self.redraw_fleets()
 	SignalManager.emit_signal("new_fleet", new_fleet)
 
-func clear():
-	for child in $Fleets/FleetScreen_ScrollContainer/Fleets_HBoxContainer.get_children():
-		child.queue_free()
+func clear(tab = 'all'):
+	if (tab == 'all' or tab == 'fleet'):
+		for child in $Fleets/FleetScreen_ScrollContainer/Fleets_HBoxContainer.get_children():
+			child.queue_free()
+	if (tab == 'all' or tab == 'planet'):
+		for child in $Planet/Planetary_Buildings_Container:
+			child.queue_free()
+	if (tab == 'all' or tab == 'planet'):
+		for child in $Planet/Orbital_Buildings_Container:
+			child.queue_free()

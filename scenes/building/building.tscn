@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/building/building.gd" type="Script" id=1]
+[ext_resource path="res://resources/industry.png" type="Texture" id=2]
+
+[node name="Building" type="Sprite"]
+position = Vector2( 24, 24 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

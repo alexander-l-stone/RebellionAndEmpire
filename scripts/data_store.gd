@@ -9,27 +9,34 @@ var sector_types = {}
 var planet_types = {
 	"asteroid_field": {
 		"name": "Asteroid Field",
-		"sprite_name": "asteroid_field",
-		"building_slots": 1,
+		"orbital_building_slots": 1,
+		"planetary_building_slots": 0,
 		"special": {
 			"cloaked_all": true,
 		},
+		"sprite_name": "asteroid_field",
 	},
 	"barren_planet":
 		{
 			"name": "Barren Planet",
-			"sprite_name": "habitable_planet",
-			"building_slots": 2,
+			"orbital_building_slots": 4,
+			"planetary_building_slots": 2,
 			"special": {},
+			"sprite_name": "habitable_planet",
 		},
 	"habitable_planet": 
 		{
 			"name": "Habitable Planet",
-			"sprite_name": "habitable_planet",
-			"building_slots": 4,
+			"orbital_building_slots": 4,
+			"planetary_building_slots": 4,
 			"special": {},
+			"sprite_name": "habitable_planet",
 		},
 }
+
+var building_types = {}
+
+var ship_types = {}
 
 var planets = {}
 var fleets = []
