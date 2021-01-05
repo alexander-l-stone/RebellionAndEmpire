@@ -5,7 +5,8 @@ var fleets = null
 
 var fleet_scene = load("res://scenes/fleet/fleet.tscn")
 var fleet_details_scene = load("res://scenes/planet_details/scenes/fleet_details.tscn")
-var building_details_scene = load("res://scenes/planet_details/scenes/building_details.tscn")
+var planetary_building_details_scene = load("res://scenes/planet_details/scenes/planetary_building_details.tscn")
+var orbital_building_details_scene = load("res://scenes/planet_details/scenes/orbital_building_details.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,13 +29,15 @@ func draw_planet_tab():
 		print(self.planet.planet_name)
 		$Planet/Planet_Sprite.texture = load("res://resources/" + planet.planet_type + ".png")
 		$Planet/Planet_Label.text = planet.planet_name
-		for building in self.planet.planetary_buildings:
-			var new_building_details = self.building_details_scene.instance()
-			new_building_details.add_child(building.duplicate())
+		for i in range(0, planet.planetary_building_slots):
+			var new_building_details = self.planetary_building_details_scene.instance()
+			if i < planet.planetary_buildings.size():
+				new_building_details.add_building(planet.planetary_buildings[i].duplicate())
 			$Planet/Planetary_Buildings_Container.add_child(new_building_details)
-		for building in self.planet.orbital_buildings:
-			var new_building_details = self.building_details_scene.instance()
-			new_building_details.add_child(building.duplicate())
+		for i in range(0, planet.orbital_building_slots):
+			var new_building_details = self.orbital_building_details_scene.instance()
+			if i < planet.orbital_buildings.size():
+				new_building_details.add_building(planet.orbital_buildings[i].duplicate())
 			$Planet/Orbital_Buildings_Container.add_child(new_building_details)
 
 func draw_fleets_tab():

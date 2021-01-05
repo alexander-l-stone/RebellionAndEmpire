@@ -4,7 +4,7 @@ extends Sprite
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var sprite_path = "res://resources/industry.png"
+var sprite_path = "res://resources/heavy_industry.png"
 
 var building_type = "industry"
 
