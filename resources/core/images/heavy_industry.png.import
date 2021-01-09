@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cruiser.png-b04eed4c5a573a4fe658cea4c6ebf25c.stex"
+path="res://.import/heavy_industry.png-842dd1579a3f807bc248c65528baafea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/cruiser.png"
-dest_files=[ "res://.import/cruiser.png-b04eed4c5a573a4fe658cea4c6ebf25c.stex" ]
+source_file="res://resources/core/images/heavy_industry.png"
+dest_files=[ "res://.import/heavy_industry.png-842dd1579a3f807bc248c65528baafea.stex" ]
 
 [params]
 

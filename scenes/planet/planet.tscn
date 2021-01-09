@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/planet/planet.gd" type="Script" id=1]
-[ext_resource path="res://resources/barren_planet.png" type="Texture" id=2]
+[ext_resource path="res://resources/core/images/planets/barren_planet.png" type="Texture" id=2]
+
+
 
 [node name="Planet" type="Sprite"]
 texture = ExtResource( 2 )

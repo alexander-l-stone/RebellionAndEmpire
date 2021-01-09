@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://data/core/planets/planet_struct.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+fields = [ "type", "planet_type", "orbital_building_slots", "planetary_building_slots", "special", "sprite_path" ]
+type = "planet"
+planet_type = "habitable_planet"
+orbital_building_slots = 4
+planetary_building_slots = 4
+special = {
+
+}
+sprite_path = "/core/images/planets/habitable_planet"

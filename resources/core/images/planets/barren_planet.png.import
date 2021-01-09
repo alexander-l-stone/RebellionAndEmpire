@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/barren_planet.png-df53ba4b6830f9efa29ca071ea0a25b8.stex"
+path="res://.import/barren_planet.png-e2e5001035ac2238a86f28f064c6b264.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/barren_planet.png"
-dest_files=[ "res://.import/barren_planet.png-df53ba4b6830f9efa29ca071ea0a25b8.stex" ]
+source_file="res://resources/core/images/planets/barren_planet.png"
+dest_files=[ "res://.import/barren_planet.png-e2e5001035ac2238a86f28f064c6b264.stex" ]
 
 [params]
 

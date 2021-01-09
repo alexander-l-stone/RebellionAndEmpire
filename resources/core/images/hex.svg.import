@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/battleship.png-c64e50c278a6a228c14682c380b5411a.stex"
+path="res://.import/hex.svg-ce06f7214c9cead4d09eb625c0883e2c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/battleship.png"
-dest_files=[ "res://.import/battleship.png-c64e50c278a6a228c14682c380b5411a.stex" ]
+source_file="res://resources/core/images/hex.svg"
+dest_files=[ "res://.import/hex.svg-ce06f7214c9cead4d09eb625c0883e2c.stex" ]
 
 [params]
 

@@ -52,13 +52,13 @@ func generate_planets(coordinate_array):
 		#pick random coordiante from array
 		var random_coord_index = rng.randf_range(0, coordinate_array.size())
 		var planet = planet_resource.instance()
-		var planet_data = DataStore.planet_types[planet_type]
-		planet.texture = load("res://resources/" + planet_type + ".png")
+		var planet_data = DataLoader.load_resource("res://data/core/planets/" + planet_type + '.tres')
+		planet.texture = load("res://resources/" + planet_data["sprite_path"] + ".png")
 		planet.q = coordinate_array[random_coord_index]["q"]
 		planet.r = coordinate_array[random_coord_index]["r"]
 		coordinate_array.remove(random_coord_index)
 		planet.planet_type = planet_type
-		planet.planet_name = planet_data["name"]
+		planet.planet_name = planet_data["planet_type"]
 		planet.planetary_building_slots = planet_data["planetary_building_slots"]
 		planet.orbital_building_slots = planet_data["orbital_building_slots"]
 		for x in range(0,6):

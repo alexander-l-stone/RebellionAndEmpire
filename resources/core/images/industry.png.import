@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/destroyer.png-3f37a554ca24471924966de8a662060b.stex"
+path="res://.import/industry.png-dc7edecb518051c679e9fb3ad46bea9c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/destroyer.png"
-dest_files=[ "res://.import/destroyer.png-3f37a554ca24471924966de8a662060b.stex" ]
+source_file="res://resources/core/images/industry.png"
+dest_files=[ "res://.import/industry.png-dc7edecb518051c679e9fb3ad46bea9c.stex" ]
 
 [params]
 

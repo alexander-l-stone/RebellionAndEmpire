@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ship.svg-d670345afa9f2d24dcfdea269c45f178.stex"
+path="res://.import/habitable_planet.png-a623d045e1b5ca6ac706108f6924c1d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/ship.svg"
-dest_files=[ "res://.import/ship.svg-d670345afa9f2d24dcfdea269c45f178.stex" ]
+source_file="res://resources/core/images/planets/habitable_planet.png"
+dest_files=[ "res://.import/habitable_planet.png-a623d045e1b5ca6ac706108f6924c1d4.stex" ]
 
 [params]
 

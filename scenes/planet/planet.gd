@@ -15,7 +15,7 @@ var orbital_buildings = []
 var garrison = {}
 var special_units = {}
 var planetary_building_slots = 2
-var orbital_building_slots = 2
+var orbital_building_slots = 4
 var special = {}
 
 # Called when the node enters the scene tree for the first time.
