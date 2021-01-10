@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://data/core/sectors/sector_struct.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+fields = [ "type", "sector_type", "planets", "optional_planets", "optional_min_range", "optional_max_range" ]
+type = "sector"
+sector_type = "core_sector"
+planets = [
+            "habitable_planet",
+            "habitable_planet",
+            "habitable_planet",
+            "habitable_planet",
+            "barren_planet",
+            "barren_planet",
+            "asteroid_field",
+            "asteroid_field",]
+optional_planets = []
+optional_min_range = 0
+optional_max_range = 0
