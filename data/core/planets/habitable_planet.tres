@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://data/core/planets/planet_struct.gd" type="Script" id=1]
+[ext_resource path="res://data/core/planets/planet_strut.gd" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
@@ -12,4 +12,4 @@ planetary_building_slots = 4
 special = {
 
 }
-sprite_path = "/core/images/planets/habitable_planet"
+sprite_path = "/core/images/planets/habitable_planet.png"

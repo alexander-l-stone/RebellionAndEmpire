@@ -4,7 +4,7 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+var sector_types = {}
 var planets = {}
 var fleets = []
 var focused_fleet = null

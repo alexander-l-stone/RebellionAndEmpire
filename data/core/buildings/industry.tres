@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://data/core/buildings/building_strut.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+fields = [ "type", "building_type", "building_slot_type", "cost", "building_effect", "sprite_path" ]
+type = "building"
+building_type = "industry"
+building_slot_type = "planetary"
+cost = 10
+building_effect = "produce:1-I"
+sprite_path = "core/images/buildings/industry.png"

@@ -1,21 +1,51 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://data/core/sectors/sector_struct.gd" type="Script" id=1]
+[ext_resource path="res://data/core/sectors/sector_strut.gd" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
 fields = [ "type", "sector_type", "planets", "optional_planets", "optional_min_range", "optional_max_range" ]
 type = "sector"
 sector_type = "core_sector"
-planets = [
-            "habitable_planet",
-            "habitable_planet",
-            "habitable_planet",
-            "habitable_planet",
-            "barren_planet",
-            "barren_planet",
-            "asteroid_field",
-            "asteroid_field",]
-optional_planets = []
+planet_types = [ "asteroid_field", "barren_planet", "habitable_planet" ]
+planets = {
+"asteroid_field": [ {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+} ],
+"barren_planet": [ {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+} ],
+"habitable_planet": [ {
+"orbital_buildings": [ "shipyard" ],
+"planetary_buildings": [ "industry", "industry" ]
+}, {
+"orbital_buildings": [ "shipyard" ],
+"planetary_buildings": [ "industry" ]
+}, {
+"orbital_buildings": [ "shipyard" ],
+"planetary_buildings": [ "industry" ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [ "industry" ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [ "industry" ]
+} ]
+}
+optional_planet_types = [  ]
+optional_planets = {
+
+}
 optional_min_range = 0
 optional_max_range = 0

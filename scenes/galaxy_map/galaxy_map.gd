@@ -12,12 +12,13 @@ func _ready():
 	SignalManager.connect("new_fleet", self, "add_fleet")
 
 func generate_sectors():
-	var sector_resource = load("res://scenes/sector/sector.tscn")
+	var sector_scene = load("res://scenes/sector/sector.tscn")
 	for sector_point in sector_centers:
-		var sector = sector_resource.instance()
+		var sector_resource = DataLoader.load_resource('res://data/core/sectors/core_sector.tres')
+		var sector = sector_scene.instance()
 		sector.q = sector_point.q
 		sector.r = sector_point.r
-		if(sector_point.q == 0):
+		if(sector_point.q == 0 && sector_point.r == 0):
 			sector.sector_type = 'core'
 			sector.red = 1
 		else:
@@ -29,6 +30,8 @@ func generate_sectors():
 			sector.blue = blue
 			sector.green = green
 		sector.name = String(sector.sector_type) + String(sector.q) + String(sector.r)
+		if(sector.sector_type == 'core'):
+			sector.generate_sector(sector_resource)
 		sector.generate_hexes()
 		add_child(sector)
 
