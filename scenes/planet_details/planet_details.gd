@@ -26,12 +26,9 @@ func redraw_planet():
 
 func draw_planet_tab():
 	if self.planet != null:
-		print(self.planet.planet_name)
-		$Planet/Planet_Sprite.texture = load("res://resources/core/images/planets" + planet.planet_type + ".png")
+		print(self.planet.planet_type)
+		$Planet/Planet_Sprite.texture = load("res://resources" + planet.sprite_path)
 		$Planet/Planet_Label.text = planet.planet_name
-		for building in planet.planetary_buildings:
-			print('building type: ' + str(building.building_type))
-			print('sprite_path: ' + str(building.sprite_path))
 		for i in range(0, planet.planetary_building_slots):
 			var new_building_details = self.planetary_building_details_scene.instance()
 			if i < planet.planetary_buildings.size():

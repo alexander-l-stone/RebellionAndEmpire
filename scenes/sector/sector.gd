@@ -61,6 +61,7 @@ func generate_planets(coordinate_array, sector_resource = null):
 			var random_coord_index = rng.randf_range(0, coordinate_array.size())
 			var new_planet = planet_scene.instance()
 			new_planet.texture = load("res://resources/" + planet_resource["sprite_path"])
+			new_planet.sprite_path = planet_resource["sprite_path"]
 			new_planet.r = coordinate_array[random_coord_index]["r"]
 			new_planet.q = coordinate_array[random_coord_index]["q"]
 			coordinate_array.remove(random_coord_index)
@@ -78,8 +79,6 @@ func generate_planets(coordinate_array, sector_resource = null):
 				new_building.cost = building_resource.cost
 				new_building.building_effect = building_resource.building_effect
 				new_planet.add_building(new_building, 'planetary')
-				print('adding planetary building')
-				print('planetary building is of type: ' + str(new_building.building_type))
 			for orbital_building in planet.orbital_buildings:
 				var building_resource = DataLoader.load_resource("res://data/core/buildings/" + orbital_building + '.tres')
 				var new_building = building_scene.instance()
@@ -89,7 +88,6 @@ func generate_planets(coordinate_array, sector_resource = null):
 				new_building.cost = building_resource.cost
 				new_building.building_effect = building_resource.building_effect
 				new_planet.add_building(new_building, 'orbital')
-				print('adding orbital building')
 			DataStore.planets[Constants.convert_coordinates_to_string(new_planet.q, new_planet.r)] = new_planet
 			self.add_child(new_planet)
 		

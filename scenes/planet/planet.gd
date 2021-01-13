@@ -8,15 +8,17 @@ extends Sprite
 var q = 0
 var r = 0
 
-var planet_type = "barren_planet"
-var planet_name = "Barren Planet"
+var planet_type = ""
+var planet_name = ""
+
+var sprite_path = ""
 
 var planetary_buildings = []
 var orbital_buildings = []
 var garrison = {}
 var special_units = {}
-var planetary_building_slots = 2
-var orbital_building_slots = 4
+var planetary_building_slots = 0
+var orbital_building_slots = 1
 var special = {}
 
 # Called when the node enters the scene tree for the first time.
