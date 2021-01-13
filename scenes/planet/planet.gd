@@ -4,6 +4,7 @@ extends Sprite
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+#TODO: Add sprite path
 var q = 0
 var r = 0
 

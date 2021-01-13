@@ -65,26 +65,31 @@ func generate_planets(coordinate_array, sector_resource = null):
 			new_planet.q = coordinate_array[random_coord_index]["q"]
 			coordinate_array.remove(random_coord_index)
 			new_planet.planet_type = planet_type
-			new_planet.planet_name = planet_resource["planet_type"]
+			new_planet.planet_name = planet_resource["planet_type"] + ': ' + str(new_planet.r) + ', ' + str(new_planet.q)
 			new_planet.planetary_building_slots = planet_resource["planetary_building_slots"]
 			new_planet.orbital_building_slots = planet_resource["orbital_building_slots"]
 			new_planet.special = planet_resource["special"]
 			for planetary_building in planet.planetary_buildings:
 				var building_resource = DataLoader.load_resource("res://data/core/buildings/" + planetary_building + '.tres')
 				var new_building = building_scene.instance()
-				new_building.texture = load("res://data/" + building_resource.sprite_path)
+				new_building.texture = load("res://resources/" + building_resource.sprite_path)
+				new_building.sprite_path = building_resource.sprite_path
 				new_building.building_type = building_resource.building_type
 				new_building.cost = building_resource.cost
 				new_building.building_effect = building_resource.building_effect
 				new_planet.add_building(new_building, 'planetary')
-			for orbital_building in planet.planetary_buildings:
+				print('adding planetary building')
+				print('planetary building is of type: ' + str(new_building.building_type))
+			for orbital_building in planet.orbital_buildings:
 				var building_resource = DataLoader.load_resource("res://data/core/buildings/" + orbital_building + '.tres')
 				var new_building = building_scene.instance()
-				new_building.texture = load("res://data/" + building_resource.sprite_path)
+				new_building.texture = load("res://resources/" + building_resource.sprite_path)
+				new_building.sprite_path = building_resource.sprite_path
 				new_building.building_type = building_resource.building_type
 				new_building.cost = building_resource.cost
 				new_building.building_effect = building_resource.building_effect
 				new_planet.add_building(new_building, 'orbital')
+				print('adding orbital building')
 			DataStore.planets[Constants.convert_coordinates_to_string(new_planet.q, new_planet.r)] = new_planet
 			self.add_child(new_planet)
 		

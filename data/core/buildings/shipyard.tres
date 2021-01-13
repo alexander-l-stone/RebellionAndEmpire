@@ -10,4 +10,4 @@ building_type = "shipyard"
 building_slot_type = "orbital"
 cost = 15
 building_effect = "builds:DD,CA,BB"
-sprite_path = "core/images/buildings/industry.png"
+sprite_path = "core/images/buildings/shipyard.png"

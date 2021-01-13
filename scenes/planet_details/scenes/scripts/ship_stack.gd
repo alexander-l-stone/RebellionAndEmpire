@@ -21,7 +21,7 @@ func _ready():
 	draw_self()
 
 func draw_self():
-	$Ship_Sprite.texture = load("res://resources/" + ship_type + ".png")
+	$Ship_Sprite.texture = load("res://resources/core/images/" + ship_type + ".png")
 	$NumShips_Label.text = "x" + str(ship_number)
 
 func _input(event):
