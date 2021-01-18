@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://data/core/galaxy_generation/galaxy_generation_strut.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+factions = [ "rebellion" ]
+core_sector_coordinate_centers = [ {
+"q": 0,
+"r": 0
+} ]
+rim_sector_coordinate_centers = [ {
+"q": 2,
+"r": 3
+}, {
+"q": -3,
+"r": 5
+}, {
+"q": -5,
+"r": 2
+}, {
+"q": -2,
+"r": -3
+}, {
+"q": 3,
+"r": -5
+}, {
+"q": 5,
+"r": -2
+} ]
+core_sectors = [ "core_sector" ]
+rim_sectors = [ "agricultural_sector", "industrial_sector", "frontier_sector" ]

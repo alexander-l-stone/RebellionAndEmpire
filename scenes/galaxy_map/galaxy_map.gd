@@ -5,7 +5,6 @@ extends Node
 # var b = "text"
 var rng = RandomNumberGenerator.new()
 var sector_centers = [{'q': 0, 'r': 0}, {'q': 2, 'r': 3}, {'q': -3, 'r': 5}, {'q': -5, 'r': 2}, {'q': -2, 'r': -3}, {'q': 3, 'r': -5}, {'q': 5, 'r': -2}]
-signal generate
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_sectors()
