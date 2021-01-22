@@ -4,7 +4,6 @@
 [ext_resource path="res://resources/core/images/ship.png" type="Texture" id=2]
 [ext_resource path="res://resources/core/images/ship_highlight.png" type="Texture" id=3]
 
-
 [node name="Fleet" type="Area2D"]
 script = ExtResource( 1 )
 

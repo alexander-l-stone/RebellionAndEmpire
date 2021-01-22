@@ -16,11 +16,12 @@ func _ready():
 func reposition():
 	for node in travel_path:
 		var sprite = Sprite.new()
-		sprite.texture = load("res://resources/ship_highlight.png")
+		sprite.texture = load("res://resources/core/images/target.png")
 		Constants.set_coordinates(node.q - issuing_fleet.q, node.r - issuing_fleet.r, sprite)
 		self.add_child(sprite)
 	var sprite = Sprite.new()
-	sprite.texture = load("res://resources/ship_highlight.png")
+	sprite.texture = load("res://resources/core/images/target.png")
+	sprite.modulate = Color(1, 0, 0)
 	Constants.set_coordinates(target.q - issuing_fleet.q, target.r - issuing_fleet.r, sprite)
 	self.add_child(sprite)
 
