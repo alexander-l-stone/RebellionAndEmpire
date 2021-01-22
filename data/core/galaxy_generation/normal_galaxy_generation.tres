@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource( 1 )
-factions = [ "rebellion" ]
+fields = [ "factions", "core_sector_coordinate_centers", "rim_sector_coordinate_centers", "core_sectors", "rim_sectors" ]
+factions = [ "rebellion", "empire" ]
 core_sector_coordinate_centers = [ {
 "q": 0,
 "r": 0

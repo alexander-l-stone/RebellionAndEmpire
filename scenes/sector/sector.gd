@@ -8,6 +8,7 @@ extends Node
 export var q = 0
 export var r = 0
 export var sector_type = 'normal'
+export var sector_name = 'normal'
 export var red = 0.0
 export var green = 0.0
 export var blue = 0.0

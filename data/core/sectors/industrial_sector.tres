@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 fields = [ "type", "sector_type", "planets", "optional_planets", "optional_min_range", "optional_max_range" ]
 type = "sector"
-sector_type = "core_sector"
+sector_type = "industrial_sector"
 planet_types = [ "asteroid_field", "barren_planet", "habitable_planet" ]
 planets = {
 "asteroid_field": [ {
@@ -15,48 +15,41 @@ planets = {
 }, {
 "orbital_buildings": [  ],
 "planetary_buildings": [  ]
-},, {
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+} ],
+"barren_planet": [ {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+},
+{
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+},
+{
 "orbital_buildings": [  ],
 "planetary_buildings": [  ]
 }, ],
-"barren_planet":  [  {
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
-},
- {
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
-},
-{
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
-},
-{
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
-},],
 "habitable_planet": [ {
 "orbital_buildings": [ "shipyard" ],
-"planetary_buildings": [ "industry". "industry" ]
-}, {
-"orbital_buildings": [ ],
-"planetary_buildings": [ "industry" ]
+"planetary_buildings": [ "industry", "industry" ]
 }, {
 "orbital_buildings": [  ],
-"planetary_buildings": [ "industry" ]
-} 
-]
+"planetary_buildings": [ "industry", "industry" ]
+},
+{
+"orbital_buildings": [  ],
+"planetary_buildings": [ "industry", "industry" ]
+}]
 }
-optional_planet_types = [ 'asteroid_field', 'barren_planet' ]
+optional_planet_types = [  ]
 optional_planets = {
-"asteroid_field": [ {
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
-},]
-"barren_planet":  [  {
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
-},]
+
 }
 optional_min_range = 0
 optional_max_range = 0
+

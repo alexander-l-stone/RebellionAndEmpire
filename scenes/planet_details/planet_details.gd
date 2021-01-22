@@ -26,7 +26,6 @@ func redraw_planet():
 
 func draw_planet_tab():
 	if self.planet != null:
-		print(self.planet.planet_type)
 		$Planet/Planet_Sprite.texture = load("res://resources" + planet.sprite_path)
 		$Planet/Planet_Label.text = planet.planet_name
 		for i in range(0, planet.planetary_building_slots):

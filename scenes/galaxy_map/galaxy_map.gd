@@ -5,6 +5,7 @@ extends Node
 # var b = "text"
 var rng = RandomNumberGenerator.new()
 var sector_centers = [{'q': 0, 'r': 0}, {'q': 2, 'r': 3}, {'q': -3, 'r': 5}, {'q': -5, 'r': 2}, {'q': -2, 'r': -3}, {'q': 3, 'r': -5}, {'q': 5, 'r': -2}]
+var galaxy_type = 'normal_galaxy_generation'
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_sectors()
@@ -12,26 +13,37 @@ func _ready():
 
 func generate_sectors():
 	var sector_scene = load("res://scenes/sector/sector.tscn")
-	for sector_point in sector_centers:
-		var sector_resource = DataLoader.load_resource('res://data/core/sectors/core_sector.tres')
+	var galaxy_generator = load("res://data/core/galaxy_generation/" + self.galaxy_type + ".tres")
+	for coordinate_pair in galaxy_generator.core_sector_coordinate_centers:
+		rng.set_seed(coordinate_pair.q + coordinate_pair.r)
+		var random_index = rng.randi_range(0, galaxy_generator.core_sectors.size()-1)
+		var sector_resource = DataLoader.load_resource('res://data/core/sectors/' + galaxy_generator.core_sectors[random_index] + '.tres')
 		var sector = sector_scene.instance()
-		sector.q = sector_point.q
-		sector.r = sector_point.r
-		if(sector_point.q == 0 && sector_point.r == 0):
-			sector.sector_type = 'core'
-			sector.red = 1
-		else:
-			rng.randomize()
-			var green = rng.randf_range(0,1)
-			var blue = rng.randf_range(0,1)
-			var red = rng.randf_range(0,1)
-			sector.red = red
-			sector.blue = blue
-			sector.green = green
+		sector.q = coordinate_pair.q
+		sector.r = coordinate_pair.r
+		sector.red = 1
+		sector.sector_type = sector_resource.sector_type
 		sector.name = String(sector.sector_type) + String(sector.q) + String(sector.r)
-		if(sector.sector_type == 'core'):
-			sector.generate_sector(sector_resource)
 		sector.generate_hexes()
+		sector.generate_sector(sector_resource)
+		add_child(sector)
+	for coordinate_pair in galaxy_generator.rim_sector_coordinate_centers:
+		rng.set_seed(coordinate_pair.q + coordinate_pair.r)
+		var random_index = rng.randi_range(0, galaxy_generator.rim_sectors.size()-1)
+		var sector_resource = DataLoader.load_resource('res://data/core/sectors/' + galaxy_generator.rim_sectors[random_index] + '.tres')
+		var sector = sector_scene.instance()
+		sector.q = coordinate_pair.q
+		sector.r = coordinate_pair.r
+		var green = rng.randf_range(0,1)
+		var blue = rng.randf_range(0,1)
+		var red = rng.randf_range(0,1)
+		sector.red = red
+		sector.blue = blue
+		sector.green = green
+		sector.name = String(sector.sector_type) + String(sector.q) + String(sector.r)
+		sector.sector_type = sector_resource.sector_type
+		sector.generate_hexes()
+		sector.generate_sector(sector_resource)
 		add_child(sector)
 
 func add_fleet(fleet):
