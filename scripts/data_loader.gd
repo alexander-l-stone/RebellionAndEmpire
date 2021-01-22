@@ -18,6 +18,11 @@ func load_data(path):
 	file.close()
 	return json_dict
 
+func load_resource(path):
+	#TODO: Figure out how mods work(probably here)
+	return load(path)
+	
+	#return load(path)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass-

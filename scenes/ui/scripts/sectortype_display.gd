@@ -15,7 +15,7 @@ func clear(_q, _r):
 	self.text = ""
 
 func display(_q, _r, sector_type):
-	self.text = "Sector Type: " + String(sector_type)
+	self.text = "Sector Type: " + String(sector_type.replace('_', ' ').capitalize())
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

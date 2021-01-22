@@ -8,6 +8,7 @@ extends Node
 export var q = 0
 export var r = 0
 export var sector_type = 'normal'
+export var sector_name = 'normal'
 export var red = 0.0
 export var green = 0.0
 export var blue = 0.0
@@ -19,6 +20,11 @@ func _ready():
 	#Make all the hexes
 	#TODO: Move this out of _ready to a function that doesn't run when this is loaded from a save
 	pass
+
+func generate_sector(sector_resource = null):
+	var coordinate_array = self.generate_hexes()
+	if(sector_resource != null):
+		generate_planets(coordinate_array, sector_resource)
 
 func generate_hexes():
 	var coordinate_array = []
@@ -37,40 +43,54 @@ func generate_hexes():
 				hex.q = qloc
 				hex.sector_type = self.sector_type
 				add_child(hex)
+	return coordinate_array
 	#TODO: Remove this if when more sector types are implemented
 	if(self.sector_type == "core"):
 		generate_planets(coordinate_array)
 
 #coordinate_array is an array of dicts. Those dicts are of form {'q':int, 'r':int}
-func generate_planets(coordinate_array):
-	var sector_guide = {}
+#TODO: remove sector_resource = null when all sectors are implemented
+func generate_planets(coordinate_array, sector_resource = null):
+	if sector_resource == null:
+		return false
+	var planet_scene = load("res://scenes/planet/planet.tscn")
+	var building_scene = load("res://scenes/building/building.tscn")
 	var rng = RandomNumberGenerator.new()
-	var planet_resource = load("res://scenes/planet/planet.tscn")
-	if(self.sector_type == "core"):
-		sector_guide = DataStore.sector_types.core
-	for planet_type in sector_guide.planets:
-		#pick random coordiante from array
-		var random_coord_index = rng.randf_range(0, coordinate_array.size())
-		var planet = planet_resource.instance()
-		var planet_data = DataStore.planet_types[planet_type]
-		planet.texture = load("res://resources/" + planet_type + ".png")
-		planet.q = coordinate_array[random_coord_index]["q"]
-		planet.r = coordinate_array[random_coord_index]["r"]
-		coordinate_array.remove(random_coord_index)
-		planet.planet_type = planet_type
-		planet.planet_name = planet_data["name"]
-		planet.planetary_building_slots = planet_data["planetary_building_slots"]
-		planet.orbital_building_slots = planet_data["orbital_building_slots"]
-		for x in range(0,6):
-			var orbital_building = self.building_scene.instance()
-			orbital_building.texture = load("res://resources/light_industry.png")
-			var planetary_building = self.building_scene.instance()
-			planetary_building.texture = load("res://resources/heavy_industry.png")
-			planet.add_building(orbital_building, 'orbital')
-			planet.add_building(planetary_building, 'planetary')
-		planet.special = planet_data['special']
-		DataStore.planets[Constants.convert_coordinates_to_string(planet.q, planet.r)] = planet
-		add_child(planet)
+	for planet_type in sector_resource.planet_types:
+		var planet_resource = DataLoader.load_resource("res://data/core/planets/" + planet_type + '.tres')
+		for planet in sector_resource.planets[planet_type]:
+			var random_coord_index = rng.randf_range(0, coordinate_array.size())
+			var new_planet = planet_scene.instance()
+			new_planet.texture = load("res://resources/" + planet_resource["sprite_path"])
+			new_planet.sprite_path = planet_resource["sprite_path"]
+			new_planet.r = coordinate_array[random_coord_index]["r"]
+			new_planet.q = coordinate_array[random_coord_index]["q"]
+			coordinate_array.remove(random_coord_index)
+			new_planet.planet_type = planet_type
+			new_planet.planet_name = planet_resource["planet_type"] + ': ' + str(new_planet.r) + ', ' + str(new_planet.q)
+			new_planet.planetary_building_slots = planet_resource["planetary_building_slots"]
+			new_planet.orbital_building_slots = planet_resource["orbital_building_slots"]
+			new_planet.special = planet_resource["special"]
+			for planetary_building in planet.planetary_buildings:
+				var building_resource = DataLoader.load_resource("res://data/core/buildings/" + planetary_building + '.tres')
+				var new_building = building_scene.instance()
+				new_building.texture = load("res://resources/" + building_resource.sprite_path)
+				new_building.sprite_path = building_resource.sprite_path
+				new_building.building_type = building_resource.building_type
+				new_building.cost = building_resource.cost
+				new_building.building_effect = building_resource.building_effect
+				new_planet.add_building(new_building, 'planetary')
+			for orbital_building in planet.orbital_buildings:
+				var building_resource = DataLoader.load_resource("res://data/core/buildings/" + orbital_building + '.tres')
+				var new_building = building_scene.instance()
+				new_building.texture = load("res://resources/" + building_resource.sprite_path)
+				new_building.sprite_path = building_resource.sprite_path
+				new_building.building_type = building_resource.building_type
+				new_building.cost = building_resource.cost
+				new_building.building_effect = building_resource.building_effect
+				new_planet.add_building(new_building, 'orbital')
+			DataStore.planets[Constants.convert_coordinates_to_string(new_planet.q, new_planet.r)] = new_planet
+			self.add_child(new_planet)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

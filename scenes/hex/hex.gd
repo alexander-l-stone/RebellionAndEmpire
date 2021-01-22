@@ -13,6 +13,7 @@ var focus = false
 
 var sector_type = 'Null'
 
+
 var last_clicked = 0
 
 

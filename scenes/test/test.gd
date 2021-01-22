@@ -33,3 +33,4 @@ func _ready():
 	$galaxy_map.add_child(fleet1)
 	DataStore.fleets.append(fleet2)
 	$galaxy_map.add_child(fleet2)
+
