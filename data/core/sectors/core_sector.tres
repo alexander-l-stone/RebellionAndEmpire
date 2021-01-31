@@ -18,27 +18,29 @@ planets = {
 }, {
 "orbital_buildings": [  ],
 "planetary_buildings": [  ]
-}, {
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
 } ],
 "barren_planet": [ {
 "orbital_buildings": [  ],
 "planetary_buildings": [  ]
 } ],
 "habitable_planet": [ {
+"loyalty_level": "loyal",
 "orbital_buildings": [ "shipyard" ],
 "planetary_buildings": [ "industry", "industry" ]
 }, {
+"loyalty_level": "loyal",
 "orbital_buildings": [ "shipyard" ],
 "planetary_buildings": [ "industry" ]
 }, {
-"orbital_buildings": [ "shipyard" ],
-"planetary_buildings": [ "industry" ]
-}, {
+"loyalty_level": "loyal",
 "orbital_buildings": [  ],
 "planetary_buildings": [ "industry" ]
 }, {
+"loyalty_level": "loyal",
+"orbital_buildings": [  ],
+"planetary_buildings": [ "industry" ]
+}, {
+"loyalty_level": "loyal",
 "orbital_buildings": [  ],
 "planetary_buildings": [ "industry" ]
 } ]

@@ -15,35 +15,52 @@ planets = {
 }, {
 "orbital_buildings": [  ],
 "planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
 } ],
 "barren_planet": [ {
 "orbital_buildings": [  ],
 "planetary_buildings": [  ]
-},
-{
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
-},
-{
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
-}, ],
-"habitable_planet": [ {
-"orbital_buildings": [ "shipyard" ],
-"planetary_buildings": [ "industry" ]
 }, {
 "orbital_buildings": [  ],
-"planetary_buildings": [ ]
-},
-{
+"planetary_buildings": [  ]
+}, {
 "orbital_buildings": [  ],
-"planetary_buildings": [ ]
+"planetary_buildings": [  ]
+} ],
+"habitable_planet": [ {
+"loyalty_level": "loyal",
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"loyalty_level": "loyal",
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
 } ]
 }
-optional_planet_types = [  ]
+optional_planet_types = [ "asteroid_field", "habitable_planet" ]
 optional_planets = {
-
+"asteroid_field": [ {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+} ],
+"habitable_planet": [ {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+} ]
 }
 optional_min_range = 0
-optional_max_range = 0
-
+optional_max_range = 2

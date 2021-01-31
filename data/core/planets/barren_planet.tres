@@ -13,3 +13,4 @@ special = {
 
 }
 sprite_path = "/core/images/planets/barren_planet.png"
+loyalty = "none"
