@@ -92,6 +92,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Planet_Owner_Sprite" type="Sprite" parent="Planet"]
+visible = false
+position = Vector2( 30, 100 )
+scale = Vector2( 0.40603, 0.321177 )
+
 [node name="Fleets" type="Tabs" parent="."]
 visible = false
 anchor_right = 1.0

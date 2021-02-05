@@ -27,7 +27,7 @@ func process_turn():
 		if (current_order is MoveOrder):
 			var order_completed = current_order.process_order()
 			if(not order_completed):
-				var move_path = Constants.a_star(current_order.issuing_fleet.get_location(), current_order.target)
+				var move_path = Constants.a_star(current_order.issuing_fleet.get_location(), current_order.target, current_order.issuing_fleet)
 				var move_order = move_order_resource.instance()
 				move_order.target = current_order.target
 				move_order.issuing_fleet = current_order.issuing_fleet

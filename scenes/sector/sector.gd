@@ -61,7 +61,6 @@ func generate_planets(coordinate_array, sector_resource = null):
 		for planet in sector_resource.planets[planet_type]:
 			self.generate_planet(planet, coordinate_array, planet_resource, rng, planet_type)
 	var optional_planet_number = rng.randi_range(sector_resource.optional_min_range, sector_resource.optional_max_range)
-	print(optional_planet_number)
 	for i in range(0, optional_planet_number):
 		var optional_planet_type_index = rng.randi_range(0, sector_resource.optional_planet_types.size()-1)
 		var optional_planet_type = sector_resource.optional_planet_types[optional_planet_type_index]
@@ -87,6 +86,10 @@ func generate_planet(planet, coordinate_array, planet_resource, rng, planet_type
 		new_planet.loyalty_level = planet["loyalty_level"]
 	else:
 		new_planet.loyalty_level = "none"
+	if "faction" in planet:
+		new_planet.faction = planet["faction"]
+	else:
+		new_planet.faction = "none"
 	for planetary_building in planet.planetary_buildings:
 		var building_resource = DataLoader.load_resource("res://data/core/buildings/" + planetary_building + '.tres')
 		var new_building = building_scene.instance()

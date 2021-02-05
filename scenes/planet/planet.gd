@@ -30,6 +30,14 @@ func _ready():
 	if (self.planet_type == 'habitable_planet' && self.loyalty_level != 'none'):
 		self.set_loyalty_sprite()
 		self.loyalty_visibility_toggle(true)
+	if (self.planet_type == 'habitable_planet' && self.faction != 'none'):
+		var faction_flag_path = ''
+		for faction in DataStore.factions:
+			if faction.faction_name == self.faction:
+				faction_flag_path = faction.faction_flag_path
+				break
+		self.set_faction_flag(faction_flag_path)
+		self.faction_flag_visibility_toggle(true)
 
 func reposition():
 	Constants.set_coordinates(q, r, self)
@@ -41,16 +49,18 @@ func set_loyalty_sprite():
 	$Loyalty_Sprite.texture = load(self.loyalty_sprite_path + "" + self.loyalty_level + ".png")
 
 func set_faction_flag(faction_flag_path):
-	if faction_flag_path == ('none' || null):
-		$Faction_Flag_Sprite.visible = false
-		return
+	if faction_flag_path == ('none'):
+		self.faction_flag_visibility_toggle(false)
 	else:
-		var flag_size_vector = Vector2(16,16)
-		var temp_flag = load("res://resource/" + faction_flag_path)
+		var flag_size_vector = Vector2(20,20)
+		var temp_flag = load("res://resources/" + faction_flag_path)
 		var temp_flag_size = temp_flag.get_size()
 		$Faction_Flag_Sprite.texture = temp_flag
 		var new_scale = flag_size_vector/temp_flag_size
 		$Faction_Flag_Sprite.scale = new_scale
+
+func faction_flag_visibility_toggle(visible = true):
+	$Faction_Flag_Sprite.visible = visible
 
 func add_building(building, building_slot_type):
 	if building_slot_type == 'planetary':

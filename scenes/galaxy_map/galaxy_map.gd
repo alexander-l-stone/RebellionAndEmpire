@@ -23,6 +23,7 @@ func generate_sectors():
 		new_faction.faction_name = faction_resource.faction_name
 		new_faction.faction_flag_path = faction_resource.faction_flag_path
 		#TODO: figure out how player control is determined
+		DataStore.factions.append(new_faction)
 	for coordinate_pair in galaxy_generator.core_sector_coordinate_centers:
 		rng.set_seed(coordinate_pair.q + coordinate_pair.r)
 		var random_index = rng.randi_range(0, galaxy_generator.core_sectors.size()-1)
