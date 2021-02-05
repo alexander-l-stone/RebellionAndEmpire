@@ -6,6 +6,8 @@ extends Node
 var rng = RandomNumberGenerator.new()
 var sector_centers = [{'q': 0, 'r': 0}, {'q': 2, 'r': 3}, {'q': -3, 'r': 5}, {'q': -5, 'r': 2}, {'q': -2, 'r': -3}, {'q': 3, 'r': -5}, {'q': 5, 'r': -2}]
 var galaxy_type = 'normal_galaxy_generation'
+
+const Faction = preload("res://scenes/faction/faction.gd")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_sectors()
@@ -14,6 +16,13 @@ func _ready():
 func generate_sectors():
 	var sector_scene = load("res://scenes/sector/sector.tscn")
 	var galaxy_generator = load("res://data/core/galaxy_generation/" + self.galaxy_type + ".tres")
+	for faction in galaxy_generator.factions:
+		var faction_resource = load("res://data/core/factions/" + faction + ".tres")
+		var new_faction = Faction.new()
+		new_faction.faction_color = faction_resource.faction_color
+		new_faction.faction_name = faction_resource.faction_name
+		new_faction.faction_flag_path = faction_resource.faction_flag_path
+		#TODO: figure out how player control is determined
 	for coordinate_pair in galaxy_generator.core_sector_coordinate_centers:
 		rng.set_seed(coordinate_pair.q + coordinate_pair.r)
 		var random_index = rng.randi_range(0, galaxy_generator.core_sectors.size()-1)

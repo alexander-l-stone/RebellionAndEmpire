@@ -21,6 +21,7 @@ var planetary_building_slots = 0
 var orbital_building_slots = 1
 var special = {}
 var loyalty_level = 'none'
+var faction = 'none'
 const loyalty_sprite_path = "res://resources/core/images/loyalty/"
 
 # Called when the node enters the scene tree for the first time.
@@ -38,6 +39,18 @@ func loyalty_visibility_toggle(visible = true):
 
 func set_loyalty_sprite():
 	$Loyalty_Sprite.texture = load(self.loyalty_sprite_path + "" + self.loyalty_level + ".png")
+
+func set_faction_flag(faction_flag_path):
+	if faction_flag_path == ('none' || null):
+		$Faction_Flag_Sprite.visible = false
+		return
+	else:
+		var flag_size_vector = Vector2(16,16)
+		var temp_flag = load("res://resource/" + faction_flag_path)
+		var temp_flag_size = temp_flag.get_size()
+		$Faction_Flag_Sprite.texture = temp_flag
+		var new_scale = flag_size_vector/temp_flag_size
+		$Faction_Flag_Sprite.scale = new_scale
 
 func add_building(building, building_slot_type):
 	if building_slot_type == 'planetary':

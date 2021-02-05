@@ -32,14 +32,17 @@ planets = {
 "habitable_planet": [ {
 "loyalty_level": "loyal",
 "orbital_buildings": [ "shipyard" ],
+"faction": "empire",
 "planetary_buildings": [ "industry" ]
 }, {
 "loyalty_level": "content",
 "orbital_buildings": [  ],
+"faction": "empire",
 "planetary_buildings": [ "industry" ]
 }, {
 "loyalty_level": "content",
 "orbital_buildings": [  ],
+"faction": "empire",
 "planetary_buildings": [ "industry" ]
 } ]
 }
