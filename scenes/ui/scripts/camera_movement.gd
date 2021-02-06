@@ -15,6 +15,14 @@ func move_screen(x,y):
 	position.x += x * speed
 	position.y += y * speed
 
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == BUTTON_WHEEL_DOWN:
+		if self.zoom.x < 1.5:
+			self.zoom = Vector2(self.zoom.x + 0.1, self.zoom.x + 0.1);
+	elif event is InputEventMouseButton and event.button_index == BUTTON_WHEEL_UP:
+		if self.zoom.x > 0.2:
+			self.zoom = Vector2(self.zoom.x - 0.1, self.zoom.x - 0.1);
+
 func _process(delta):
 	var mousePosition = get_viewport().get_mouse_position()
 	var visibleRect = get_viewport().get_visible_rect()
