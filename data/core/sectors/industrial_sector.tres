@@ -18,6 +18,39 @@ planets = {
 }, {
 "orbital_buildings": [  ],
 "planetary_buildings": [  ]
+} ],
+"barren_planet": [ {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+}, {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
+} ],
+"habitable_planet": [ {
+"loyalty_level": "loyal",
+"orbital_buildings": [ "shipyard" ],
+"faction": "empire",
+"planetary_buildings": [ "industry" ]
+}, {
+"loyalty_level": "content",
+"orbital_buildings": [  ],
+"faction": "empire",
+"planetary_buildings": [ "industry" ]
+}, {
+"loyalty_level": "content",
+"orbital_buildings": [  ],
+"faction": "empire",
+"planetary_buildings": [ "industry" ]
+} ]
+}
+optional_planet_types = [ "barren_planet", "asteroid_field" ]
+optional_planets = {
+"asteroid_field": [ {
+"orbital_buildings": [  ],
+"planetary_buildings": [  ]
 }, {
 "orbital_buildings": [  ],
 "planetary_buildings": [  ]
@@ -25,31 +58,10 @@ planets = {
 "barren_planet": [ {
 "orbital_buildings": [  ],
 "planetary_buildings": [  ]
-},
-{
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
-},
-{
-"orbital_buildings": [  ],
-"planetary_buildings": [  ]
-}, ],
-"habitable_planet": [ {
-"orbital_buildings": [ "shipyard" ],
-"planetary_buildings": [ "industry", "industry" ]
 }, {
 "orbital_buildings": [  ],
-"planetary_buildings": [ "industry", "industry" ]
-},
-{
-"orbital_buildings": [  ],
-"planetary_buildings": [ "industry", "industry" ]
-}]
-}
-optional_planet_types = [  ]
-optional_planets = {
-
+"planetary_buildings": [  ]
+} ]
 }
 optional_min_range = 0
-optional_max_range = 0
-
+optional_max_range = 2

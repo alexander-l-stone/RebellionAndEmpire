@@ -16,3 +16,4 @@ special = {
 }
 }
 sprite_path = "/core/images/planets/asteroid_field.png"
+loyalty_level = "none"

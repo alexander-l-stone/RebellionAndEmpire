@@ -71,7 +71,7 @@ func gain_focus():
 
 func move_focused_fleet():
 	var move_order_resource = preload("res://scenes/move_order/move_order.tscn")
-	var move_path = Constants.a_star(DataStore.focused_fleet.get_location(), {'q': self.q, 'r': self.r})
+	var move_path = Constants.a_star(DataStore.focused_fleet.get_location(), {'q': self.q, 'r': self.r}, DataStore.focused_fleet)
 	var move_order = move_order_resource.instance()
 	move_order.target = get_self_pos()
 	move_order.issuing_fleet = DataStore.focused_fleet

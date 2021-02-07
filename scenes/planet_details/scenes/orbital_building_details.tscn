@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/planet_details/scenes/scripts/building_details.gd" type="Script" id=1]
-[ext_resource path="res://resources/style_boxes/orbital_bg.tres" type="StyleBox" id=2]
+[ext_resource path="res://resources/core/style_boxes/orbital_bg.tres" type="StyleBox" id=2]
+
 
 [node name="Building_Details" type="Panel"]
 show_behind_parent = true

@@ -13,3 +13,4 @@ special = {
 
 }
 sprite_path = "/core/images/planets/habitable_planet.png"
+loyalty = "loyal"

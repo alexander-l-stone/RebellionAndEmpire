@@ -10,6 +10,7 @@ var fleets = []
 var focused_fleet = null
 var order_queue = []
 var coordinates = {}
+var factions = []
 
 var selected_ship_stack = null
 

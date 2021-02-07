@@ -51,26 +51,36 @@ func heuristic(coord1, coord2):
 	#TODO: Make this better
 	return (distance_between_points(coord1, coord2))
 
-func a_star(start, target):
+func a_star(start, target, fleet):
 	var frontier = PriorityQueue.new(target)
-	frontier.enqueue(start)
+	frontier.enqueue(start, 0)
 	var came_from = {}
 	var cost_so_far = {}
 	came_from[convert_coordinates_to_string(start.q, start.r)] = convert_coordinates_to_string(start.q, start.r)
 	cost_so_far[convert_coordinates_to_string(start.q, start.r)] = 0
+	var visited = []
 	while not frontier.empty():
 		var current = frontier.dequeue()
-	
 		if (current.data.q == target.q) and (current.data.r == target.r):
 			break
 		
 		for next in get_adjacent_coordinates(current.data['q'], current.data['r']):
 			#TODO: Calculate actual cost later
-			var new_cost = cost_so_far[convert_coordinates_to_string(current.data.q, current.data.r)] + 1
+			var new_cost = self.a_star_cost(next, fleet, cost_so_far[convert_coordinates_to_string(current.data.q, current.data.r)])
+			if cost_so_far.has(convert_coordinates_to_string(next.q, next.r)):
+				print('current: ' + str(current.data))
+				print('next: ' + str(next))
+				print('new_cost: ' + str(new_cost))
+				print('cost so far: ' + str(cost_so_far[convert_coordinates_to_string(next.q, next.r)]))
 			if (not cost_so_far.has(convert_coordinates_to_string(next.q, next.r))) or (new_cost < cost_so_far[convert_coordinates_to_string(next.q, next.r)]):
 				cost_so_far[convert_coordinates_to_string(next.q, next.r)] = new_cost
 				came_from[convert_coordinates_to_string(next.q, next.r)] = convert_coordinates_to_string(current.data.q, current.data.r)
-				frontier.enqueue(next)
+				frontier.enqueue(next, cost_so_far[convert_coordinates_to_string(next.q, next.r)])
+				if visited.find(next) == -1:
+					visited.append(next)
+				else:
+					print('Found ' + str(next))
+					print('Cost: ' + str(cost_so_far[convert_coordinates_to_string(next.q, next.r)]))
 	var path_array = [convert_coordinates_to_string(target.q, target.r)]
 	var start_coord = convert_coordinates_to_string(start.q, start.r)
 
@@ -79,7 +89,13 @@ func a_star(start, target):
 	for entry in path_array:
 		entry = convert_string_to_coordinates(entry)
 	return path_array.slice(1, path_array.size() - 1)
-	
+
+func a_star_cost(next_coord, fleet, cost_so_far):
+	if DataStore.planets.has(Constants.convert_coordinates_to_string(next_coord.q, next_coord.r)):
+		var planet_at_coord = DataStore.planets[Constants.convert_coordinates_to_string(next_coord.q, next_coord.r)]
+		if planet_at_coord.faction != 'none' && planet_at_coord.faction != fleet.faction:
+			return cost_so_far + 255
+	return cost_so_far + 1
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -88,9 +104,9 @@ class PQNode:
 		var data: Dictionary
 		var priority: int
 		
-		func _init(data, target):
+		func _init(data, target, cost):
 			self.data = data
-			self.priority = Constants.heuristic(self.data, target)
+			self.priority = Constants.heuristic(self.data, target) + cost
 
 class PriorityQueue:
 	var heap = []
@@ -131,8 +147,8 @@ class PriorityQueue:
 				self.swap_pos(i, self.right_pos(i))
 				self.minify_heap(self.right_pos(i))
 	
-	func enqueue(data):
-		var new_node = PQNode.new(data, self.target)
+	func enqueue(data, cost):
+		var new_node = PQNode.new(data, self.target, cost)
 		self.heap.append(new_node)
 		var current = self.heap.size() - 1
 		while (self.heap[current].priority < self.heap[self.parent_pos(current)].priority):

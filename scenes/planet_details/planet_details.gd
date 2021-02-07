@@ -28,6 +28,7 @@ func draw_planet_tab():
 	if self.planet != null:
 		$Planet/Planet_Sprite.texture = load("res://resources" + planet.sprite_path)
 		$Planet/Planet_Label.text = planet.planet_name
+		self.draw_faction_flag()
 		for i in range(0, planet.planetary_building_slots):
 			var new_building_details = self.planetary_building_details_scene.instance()
 			if i < planet.planetary_buildings.size():
@@ -38,6 +39,23 @@ func draw_planet_tab():
 			if i < planet.orbital_buildings.size():
 				new_building_details.add_building(planet.orbital_buildings[i].duplicate())
 			$Planet/Orbital_Buildings_Container.add_child(new_building_details)
+
+func draw_faction_flag():
+	var faction_flag_path = ''
+	for faction in DataStore.factions:
+			if faction.faction_name == self.planet.faction:
+				faction_flag_path = faction.faction_flag_path
+				break
+	if faction_flag_path == ('none'):
+		$Planet/Planet_Owner_Sprite.visible = false
+	else:
+		var flag_size_vector = Vector2(50,50)
+		var temp_flag = load("res://resources/" + faction_flag_path)
+		var temp_flag_size = temp_flag.get_size()
+		$Planet/Planet_Owner_Sprite.texture = temp_flag
+		var new_scale = flag_size_vector/temp_flag_size
+		$Planet/Planet_Owner_Sprite.scale = new_scale
+		$Planet/Planet_Owner_Sprite.visible = true
 
 func draw_fleets_tab():
 	if (fleets != null) and fleets.size() > 0:
