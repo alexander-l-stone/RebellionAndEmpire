@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/ui/scripts/camera_movement.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/scripts/coordinate_display.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/ui/scripts/sectortype_display.gd" type="Script" id=4]
 [ext_resource path="res://scenes/ui/scripts/planettype_display.gd" type="Script" id=5]
 [ext_resource path="res://scenes/ui/scripts/fleetowner_display.gd" type="Script" id=6]
-[ext_resource path="res://scenes/ui/scripts/fleetcontents_display.gd" type="Script" id=7]
 [ext_resource path="res://scenes/ui/scripts/endturn_button.gd" type="Script" id=8]
 
 [node name="UI" type="Node2D"]
@@ -86,18 +85,6 @@ __meta__ = {
 margin_right = 128.0
 margin_bottom = 14.0
 script = ExtResource( 6 )
-
-[node name="UI_FleetContents" type="ScrollContainer" parent="UI_CanvasLayer/UI_Panel/UI_SelectedPlanetDetails_Panel2"]
-margin_top = 18.0
-margin_right = 128.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 0, 110 )
-script = ExtResource( 7 )
-
-[node name="UI_FleetContent_VerticalScroll" type="VBoxContainer" parent="UI_CanvasLayer/UI_Panel/UI_SelectedPlanetDetails_Panel2/UI_FleetContents"]
-margin_right = 128.0
-margin_bottom = 110.0
-rect_min_size = Vector2( 128, 110 )
 
 [node name="UI_EndTurn_Button" type="Button" parent="UI_CanvasLayer/UI_Panel"]
 anchor_left = 1.0

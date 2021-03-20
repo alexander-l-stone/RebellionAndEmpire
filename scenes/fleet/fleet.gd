@@ -7,11 +7,11 @@ extends Area2D
 var q = 0
 var r = 0
 
-var contents = []
-var fleet_speed = -1
+var fleet_speed = 1
 var faction = "rebellion"
 var focused = false
 var fleet_name = faction.capitalize() + " Fleet"
+var fleet_type = "Normal"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,41 +19,6 @@ func _ready():
 
 func reposition():
 	Constants.set_coordinates(q, r, self)
-	
-func add_ship(ship):
-	contents.append(ship)
-	if ship.speed < fleet_speed or fleet_speed == -1:
-		fleet_speed = ship.speed
-
-func remove_ship(ship):
-	var ship_index = contents.find(ship)
-	if ship_index != -1:
-		contents.remove(ship_index)
-		if(ship.speed == fleet_speed):
-			recalculate_speed()
-
-func remove_ship_of_type(ship_type):
-	for entry in self.contents:
-		if entry.ship_type == ship_type:
-			contents.erase(entry)
-			self.recalculate_speed()
-			return entry
-	return null
-
-func count_contents():
-	var fleet = {}
-	for ship in self.contents:
-		if fleet.has(ship.ship_type):
-			fleet[ship.ship_type] += 1
-		else:
-			fleet[ship.ship_type] = 1
-	return fleet
-
-func recalculate_speed():
-	fleet_speed = 100
-	for ship in contents:
-		if ship.speed < fleet_speed:
-			fleet_speed = ship.speed
 
 func get_location():
 	return {'q': self.q, 'r': self.r}

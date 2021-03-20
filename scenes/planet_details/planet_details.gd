@@ -46,10 +46,11 @@ func draw_faction_flag():
 			if faction.faction_name == self.planet.faction:
 				faction_flag_path = faction.faction_flag_path
 				break
-	if faction_flag_path == ('none'):
+	if faction_flag_path == ('none') or faction_flag_path == '':
 		$Planet/Planet_Owner_Sprite.visible = false
 	else:
 		var flag_size_vector = Vector2(50,50)
+		print(faction_flag_path)
 		var temp_flag = load("res://resources/" + faction_flag_path)
 		var temp_flag_size = temp_flag.get_size()
 		$Planet/Planet_Owner_Sprite.texture = temp_flag
@@ -83,7 +84,6 @@ func _input(event):
 	if (event is InputEventMouseButton) and event.pressed:
 		var local_event = make_input_local(event)
 		if !Rect2(Vector2(0,0),rect_size).has_point(local_event.position):
-			DataStore.cleanEmptyFleets()
 			self.queue_free()
 
 func new_fleet(r, q, index):
