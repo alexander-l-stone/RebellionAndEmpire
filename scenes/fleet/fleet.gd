@@ -10,12 +10,24 @@ var r = 0
 var fleet_speed = 1
 var faction = "rebellion"
 var focused = false
-var fleet_name = faction.capitalize() + " Fleet"
+var fleet_name = "Fleet"
+
 var fleet_type = "Normal"
+var combat_strength = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reposition()
+	set_fleet_name(self.faction)
+	set_fleet_color(self.faction)
+
+func set_fleet_name(faction):
+	if (faction in DataStore.factions):
+		self.fleet_name = DataStore.factions[faction].faction_name.capitalize() + " Fleet"
+
+func set_fleet_color(faction):
+	if(faction in DataStore.factions):
+		$Sprite_Fleet.modulate = DataStore.factions[faction].faction_color
 
 func reposition():
 	Constants.set_coordinates(q, r, self)

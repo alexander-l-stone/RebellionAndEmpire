@@ -32,10 +32,8 @@ func _ready():
 		self.loyalty_visibility_toggle(true)
 	if (self.planet_type == 'habitable_planet' && self.faction != 'none'):
 		var faction_flag_path = ''
-		for faction in DataStore.factions:
-			if faction.faction_name == self.faction:
-				faction_flag_path = faction.faction_flag_path
-				break
+		if (self.faction in DataStore.factions):
+			faction_flag_path = DataStore.factions[self.faction].faction_flag_path
 		self.set_faction_flag(faction_flag_path)
 		self.faction_flag_visibility_toggle(true)
 

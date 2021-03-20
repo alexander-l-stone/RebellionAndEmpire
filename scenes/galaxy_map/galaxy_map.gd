@@ -23,7 +23,7 @@ func generate_sectors():
 		new_faction.faction_name = faction_resource.faction_name
 		new_faction.faction_flag_path = faction_resource.faction_flag_path
 		#TODO: figure out how player control is determined
-		DataStore.factions.append(new_faction)
+		DataStore.factions[new_faction.faction_name] = new_faction
 	for coordinate_pair in galaxy_generator.core_sector_coordinate_centers:
 		rng.set_seed(coordinate_pair.q + coordinate_pair.r)
 		var random_index = rng.randi_range(0, galaxy_generator.core_sectors.size()-1)
@@ -55,10 +55,28 @@ func generate_sectors():
 		sector.generate_hexes()
 		sector.generate_sector(sector_resource)
 		add_child(sector)
+	self.test_fleets()
 
 func add_fleet(fleet):
 	self.add_child(fleet)
 	fleet.reposition()
+
+func test_fleets():
+	var fleet_resource = load("res://scenes/fleet/fleet.tscn")
+	var fleet1 = fleet_resource.instance()
+	var fleet2 = fleet_resource.instance()
+	var test_faction = null
+	fleet1.q = 1
+	fleet1.r = 1
+	fleet2.q = 1
+	fleet2.r = 1
+	fleet2.fleet_speed = 2
+	fleet2.combat_strength = 5
+	fleet2.fleet_type = "Fast"
+	DataStore.fleets.append(fleet1)
+	self.add_child(fleet1)
+	DataStore.fleets.append(fleet2)
+	self.add_child(fleet2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

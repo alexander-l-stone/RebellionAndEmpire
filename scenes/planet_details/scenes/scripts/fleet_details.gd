@@ -17,8 +17,16 @@ func _ready():
 			self.focused = true
 
 func reset_display():
-	for child in $FleetDetails_GridContainer.get_children():
+	for child in $FleetDetails_VContainer.get_children():
 		child.queue_free()
+	var name_str = fleet.fleet_name
+	var combat_str = "Combat Strength: " + str(fleet.combat_strength)
+	var name_label = Label.new()
+	name_label.text = name_str
+	var combat_label = Label.new()
+	combat_label.text = combat_str
+	$FleetDetails_VContainer.add_child(name_label)
+	$FleetDetails_VContainer.add_child(combat_label)
 
 func _input(event):
 	if(mouse_inside):
