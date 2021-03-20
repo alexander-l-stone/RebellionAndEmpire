@@ -10,6 +10,7 @@ signal new_fleet_creation(r, q, i)
 signal select_ship_stack(ship_stack)
 signal redraw_planet_details_fleet()
 signal new_fleet(fleet)
+signal new_event_log()
 
 func _ready():
 	pass # Replace with function body.

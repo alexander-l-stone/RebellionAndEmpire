@@ -11,6 +11,7 @@ var focused_fleet = null
 var order_queue = []
 var coordinates = {}
 var factions = {}
+var event_log = []
 
 var selected_ship_stack = null
 
@@ -19,6 +20,9 @@ func _ready():
 	var sectors_json = DataLoader.load_data("/core/sectors.json")
 	self.sector_types = sectors_json.result
 	order_queue = OrderQueue.new()
+
+func clear_event_log():
+	self.event_log = []
 
 class OrderQueue:
 	var queue = []

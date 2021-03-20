@@ -19,6 +19,7 @@ func remove_orders_for_target(target):
 			DataStore.order_queue.clear_order(target)
 
 func process_turn():
+	DataStore.clear_event_log()
 	var new_queue = DataStore.OrderQueue.new()
 	var current_order = DataStore.order_queue.dequeue()
 	var move_order_resource = preload("res://scenes/move_order/move_order.tscn")
@@ -40,9 +41,13 @@ func process_turn():
 				new_queue.enqueue(move_order)
 				move_order.issuing_fleet.add_child(move_order)
 				move_order.reposition()
+			else:
+				var event_log_string = current_order.issuing_fleet.fleet_name + " arrived at it's destination of " + str(current_order.target.r) + ", " + str(current_order.target.q) + "."
+				DataStore.event_log.append(event_log_string)
 			current_order.delete_self()
 		current_order = DataStore.order_queue.dequeue()
 	DataStore.order_queue = new_queue
+	SignalManager.emit_signal("new_event_log")
 		
 	#TODO: Handle combat?
 # Called every frame. 'delta' is the elapsed time since the previous frame.
