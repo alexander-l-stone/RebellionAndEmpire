@@ -106,14 +106,17 @@ __meta__ = {
 margin_right = 50.0
 margin_bottom = 20.0
 text = "Event Log"
+flat = false
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="UI_EventLog_PopupMenu" type="PopupMenu" parent="UI_CanvasLayer/UI_EventLog_Button"]
-margin_right = 73.0
-margin_bottom = 212.0
+margin_right = 71.0
+margin_bottom = 22.0
+hide_on_item_selection = false
+hide_on_checkable_item_selection = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
