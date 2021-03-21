@@ -1,20 +1,19 @@
-extends MenuButton
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+extends CheckButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalManager.connect("new_event_log", self, 'generate_popup_menu')
 
 func generate_popup_menu():
-	for child in $UI_EventLog_PopupMenu.get_children():
+	for child in $UI_EventLog_Messages.get_children():
 		child.queue_free()
 	for event in DataStore.event_log:
-		$UI_EventLog_PopupMenu.add_item(event)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+		var new_label = Label.new()
+		new_label.text = event
+		$UI_EventLog_Messages.add_child(new_label)
+
+func _on_UI_EventLog_CheckBox_toggled(button_pressed):
+	if(button_pressed):
+		$UI_EventLog_Messages.visible = true
+	else:
+		$UI_EventLog_Messages.visible = false
